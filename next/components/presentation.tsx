@@ -1,6 +1,5 @@
 import { useSearchState } from '@/hooks/popover-search/use-search'
-import { FC, useMemo } from 'react'
-import FilterBox from './inputs/FilterBox'
+import { FC } from 'react'
 
 type PresentationProps = {}
 
