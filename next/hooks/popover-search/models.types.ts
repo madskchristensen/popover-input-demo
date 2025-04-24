@@ -1,4 +1,3 @@
-
 export interface SearchDto {
   table: string
   columns: SearchColumnDto[]
@@ -10,7 +9,7 @@ export interface SearchColumnDto {
 }
 
 export interface SearchPayload {
-    value: string
-    exact: boolean
-    allowMultiple?: boolean
-  }
+  value: string
+  exact: boolean
+  allowMultiple?: boolean
+}

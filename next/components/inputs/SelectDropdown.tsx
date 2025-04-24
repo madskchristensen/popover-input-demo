@@ -1,7 +1,7 @@
-import { SelectOption } from '@/hooks/popover-search/inputs/inputs'
+import { SelectOption } from '@/hooks/popover-search/inputs'
 import { FC, JSX, MutableRefObject } from 'react'
 import Select from 'react-select'
-import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager'
+import StateManagerProps from 'react-select'
 
 type SelectDropdownProps = {
   name: string
@@ -9,11 +9,12 @@ type SelectDropdownProps = {
   placeholder: string
   disabled?: boolean
   options: SelectOption[]
+  onChange: (option: SelectOption | null) => void
   value: SelectOption['value']
   initialFocusRef?: MutableRefObject<null>
   controlClassName?: string
   onBlur?: (e: React.FocusEvent<HTMLElement>) => void
-} & Omit<StateManagerProps<SelectOption, false | true>, 'value'>
+} & Omit<StateManagerProps, 'value'>
 
 const formatOptionLabel = ({ label, element }: SelectOption) => {
   return (

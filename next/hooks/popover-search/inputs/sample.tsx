@@ -1,6 +1,6 @@
-import { CarBrand, CarModel, CarVersion } from '../mock-data/types'
+import { CarBrand, CarModel, CarVersion } from '../../../mock/country'
 import { getCountryOptions } from '../utils/common'
-import { SearchInputDto, SelectOption } from './inputs'
+import { SearchInputDto, SelectOption } from '.'
 
 export const searchStateSample: SearchInputDto[] = [
   {

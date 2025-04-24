@@ -1,13 +1,14 @@
 import { useCallback, useMemo } from 'react'
+
+import { SearchColumnDto, SearchDto, SearchPayload } from './models.types'
+import { capitalize } from 'lodash'
+import { useLocalStorage } from 'usehooks-ts'
+import { SearchInput } from './inputs'
 import {
   localStorageInputMap,
   SEARCH_KEY,
   SEARCH_KEY_LOCAL_STORAGE,
 } from './inputs/storage-maps'
-import { SearchColumnDto, SearchDto, SearchPayload } from './models'
-import { capitalize } from 'lodash'
-import { useLocalStorage } from 'usehooks-ts'
-import { SearchInput } from './inputs/inputs'
 
 export type TableIdentifier = Pick<SearchDto, 'table'>
 export type ColumnIdentifier = Pick<SearchColumnDto, 'name'>

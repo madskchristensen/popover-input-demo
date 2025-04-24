@@ -1,4 +1,5 @@
-import { SearchInputDto } from '@/components/PopoverSearch/types'
+import { SearchInputDto } from '.'
+import { searchStateSample } from './sample'
 
 // Solution to allow multiple localStorage saved search states to map to multiple inputs that are not saved in localStorage.
 // This solution allows us to bypass the need for saving the inputs in localStorage, which could cause weird issues, especially with functions,
