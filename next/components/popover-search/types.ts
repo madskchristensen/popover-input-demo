@@ -1,5 +1,8 @@
 import { SelectOption } from '@/hooks/popover-search/inputs/inputs'
-import { ColumnIdentifier, TableIdentifier } from '@/hooks/popover-search/use-search'
+import {
+  ColumnIdentifier,
+  TableIdentifier,
+} from '@/hooks/popover-search/use-search'
 
 export type SearchInputDto = TableIdentifier & {
   inputs: SearchInput[]

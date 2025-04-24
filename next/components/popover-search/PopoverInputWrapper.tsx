@@ -97,7 +97,7 @@ const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
                           display={'inline-flex'}
                           onClick={(e) => {
                             if (!isOpen) {
-                                e.stopPropagation() // When resetting -> If popover is open, close it. If popover is closed, do nothing.
+                              e.stopPropagation() // When resetting -> If popover is open, close it. If popover is closed, do nothing.
                             }
 
                             updateState({
