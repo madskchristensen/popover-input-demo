@@ -1,11 +1,10 @@
-import { CarBrand, CarModel, CarVersion } from "../mock-data/types"
-import { getCountryOptions } from "../utils/common"
-import { SearchInputDto, SelectOption } from "./inputs"
-
+import { CarBrand, CarModel, CarVersion } from '../mock-data/types'
+import { getCountryOptions } from '../utils/common'
+import { SearchInputDto, SelectOption } from './inputs'
 
 export const searchStateSample: SearchInputDto[] = [
   {
-    table: 'submission',
+    table: 'mock',
     inputs: [
       {
         name: 'carNumber',
@@ -39,7 +38,7 @@ export const searchStateSample: SearchInputDto[] = [
           }))
         },
         isDependantOn: {
-          table: 'submission',
+          table: 'mock',
           column: 'carBrand',
         },
       },
@@ -54,7 +53,7 @@ export const searchStateSample: SearchInputDto[] = [
           }))
         },
         isDependantOn: {
-          table: 'submission',
+          table: 'mock',
           column: 'carModel',
         },
       },
