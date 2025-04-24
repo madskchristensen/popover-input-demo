@@ -1,4 +1,4 @@
-import { SelectOption } from '@/hooks/popover-search/inputs/inputs'
+import { SelectOption } from '@/hooks/popover-search/inputs'
 import {
   ColumnIdentifier,
   TableIdentifier,

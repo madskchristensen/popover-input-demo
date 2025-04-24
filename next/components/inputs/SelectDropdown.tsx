@@ -13,6 +13,8 @@ type SelectDropdownProps = {
   value: SelectOption['value']
   initialFocusRef?: MutableRefObject<null>
   controlClassName?: string
+  openMenuOnFocus?: boolean
+  tabSelectsValue: boolean
   onBlur?: (e: React.FocusEvent<HTMLElement>) => void
 } & Omit<StateManagerProps, 'value'>
 

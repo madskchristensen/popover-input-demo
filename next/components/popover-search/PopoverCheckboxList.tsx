@@ -6,7 +6,7 @@ import { Checkbox, CheckboxGroup, useDisclosure } from '@chakra-ui/react'
 import { capitalize } from 'lodash'
 import { useEffect, useMemo, useRef } from 'react'
 import PopoverInputWrapper from './PopoverInputWrapper'
-import { SelectOption } from '@/hooks/popover-search/inputs/inputs'
+import { SelectOption } from '@/hooks/popover-search/inputs'
 
 type PopoverCheckboxListProps = TableIdentifier & {
   value: string

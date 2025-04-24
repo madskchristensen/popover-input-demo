@@ -6,8 +6,8 @@ import { useDisclosure } from '@chakra-ui/react'
 import { useEffect, useMemo, useRef } from 'react'
 import { SingleValue } from 'react-select'
 import PopoverInputWrapper from './PopoverInputWrapper'
-import { SelectOption } from '@/hooks/popover-search/inputs/inputs'
 import SelectDropdown from '../inputs/SelectDropdown'
+import { SelectOption } from '@/hooks/popover-search/inputs'
 
 type PopoverDropdownProps = TableIdentifier & {
   value: string
@@ -94,7 +94,7 @@ const PopoverDropdown: React.FC<PopoverDropdownProps> = ({
         openMenuOnFocus={true}
         tabSelectsValue={false}
         initialFocusRef={initialFocusRef}
-        className='w-full'
+        /*         className='w-full' */
         name={name}
         options={options}
         placeholder={label}
