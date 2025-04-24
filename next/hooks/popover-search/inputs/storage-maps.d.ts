@@ -1,11 +1,10 @@
 import { SearchInputDto } from '@/components/PopoverSearch/types'
 
-
 // Solution to allow multiple localStorage saved search states to map to multiple inputs that are not saved in localStorage.
 // This solution allows us to bypass the need for saving the inputs in localStorage, which could cause weird issues, especially with functions,
 // since they can't be serialized/deserialized by default.
 
-export type SEARCH_KEY = 'submission' | 'listing' | 'wholesaler'
+export type SEARCH_KEY = 'sample'
 type SEARCH_KEY_LOCAL_STORAGE_PREFIX = `searchState`
 export type SEARCH_KEY_LOCAL_STORAGE =
   `${SEARCH_KEY_LOCAL_STORAGE_PREFIX}${Capitalize<SEARCH_KEY>}`
@@ -18,5 +17,5 @@ export const localStorageInputMap: Record<
   SEARCH_KEY_LOCAL_STORAGE,
   SearchInputDto[]
 > = {
-searchStateSample
+  searchStateSample,
 }

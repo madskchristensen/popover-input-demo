@@ -1,23 +1,9 @@
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { BullModule } from '@nestjs/bullmq'
-import { ImageModule } from './image/image.module'
-import { QueueName } from './constants/queues'
 
 @Module({
-  imports: [
-    BullModule.forRoot({
-      connection: {
-        host: 'localhost',
-        port: 6379,
-      },
-    }),
-    BullModule.registerQueue({
-      name: QueueName.IMAGE,
-    }),
-    ImageModule,
-  ],
+  imports: [],
   controllers: [AppController],
   providers: [AppService],
 })
