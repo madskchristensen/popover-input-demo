@@ -1,7 +1,7 @@
 import {
   SearchUpdateStateParams,
   TableIdentifier,
-} from '@/hooks/popover-search/hook'
+} from '@/hooks/popover-search/use-search'
 import { Input } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { useDebounceCallback } from 'usehooks-ts'

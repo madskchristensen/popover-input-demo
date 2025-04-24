@@ -1,12 +1,13 @@
 import {
   SearchUpdateStateParams,
   TableIdentifier,
-} from '@/hooks/popover-search/hook'
+} from '@/hooks/popover-search/use-search'
 import { useDisclosure } from '@chakra-ui/react'
 import { useEffect, useMemo, useRef } from 'react'
 import { SingleValue } from 'react-select'
-import SelectDropdown, { SelectOption } from '../SelectDropdown'
 import PopoverInputWrapper from './PopoverInputWrapper'
+import { SelectOption } from '@/hooks/popover-search/inputs/inputs'
+import SelectDropdown from '../inputs/SelectDropdown'
 
 type PopoverDropdownProps = TableIdentifier & {
   value: string

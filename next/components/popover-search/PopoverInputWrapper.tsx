@@ -1,7 +1,7 @@
 import {
   SearchUpdateStateParams,
   TableIdentifier,
-} from '@/hooks/popover-search/hook'
+} from '@/hooks/popover-search/use-search'
 import CloseIcon from '@/public/close.svg'
 import {
   Box,
@@ -14,7 +14,7 @@ import {
   PopoverTrigger,
   Stack,
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { JSX } from 'react'
 
 type PopoverInputWrapperProps = TableIdentifier & {
   value: string
@@ -96,7 +96,9 @@ const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
                           minW={'auto'}
                           display={'inline-flex'}
                           onClick={(e) => {
-                            !isOpen && e.stopPropagation() // When resetting -> If popover is open, close it. If popover is closed, do nothing.
+                            if (!isOpen) {
+                                e.stopPropagation() // When resetting -> If popover is open, close it. If popover is closed, do nothing.
+                            }
 
                             updateState({
                               action: 'RESET_SINGLE',

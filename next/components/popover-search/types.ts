@@ -1,5 +1,5 @@
-import { ColumnIdentifier, TableIdentifier } from '@/hooks/popover-search/hook'
-import { SelectOption } from '../SelectDropdown'
+import { SelectOption } from '@/hooks/popover-search/inputs/inputs'
+import { ColumnIdentifier, TableIdentifier } from '@/hooks/popover-search/use-search'
 
 export type SearchInputDto = TableIdentifier & {
   inputs: SearchInput[]
