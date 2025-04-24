@@ -1,5 +1,6 @@
 import { useSearchState } from '@/hooks/popover-search/use-search'
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
+import FilterBox from './inputs/FilterBox'
 
 type PresentationProps = {}
 
@@ -7,7 +8,7 @@ export const Presentation: FC<PresentationProps> = ({}) => {
   const { searchState, updateState, getInput, hasValues, filterEmpty } =
     useSearchState('sample')
 
-  return <p>hi</p>
+  return <></>
 }
 
 export default Presentation
