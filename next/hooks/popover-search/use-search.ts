@@ -1,10 +1,13 @@
-import { useCallback, useMemo } from "react"
-import { localStorageInputMap, SEARCH_KEY, SEARCH_KEY_LOCAL_STORAGE } from "./inputs/storage-maps"
-import { SearchColumnDto, SearchDto, SearchPayload } from "./models"
+import { useCallback, useMemo } from 'react'
+import {
+  localStorageInputMap,
+  SEARCH_KEY,
+  SEARCH_KEY_LOCAL_STORAGE,
+} from './inputs/storage-maps'
+import { SearchColumnDto, SearchDto, SearchPayload } from './models'
 import { capitalize } from 'lodash'
-import { useLocalStorage } from "usehooks-ts"
-import { SearchInput } from "./inputs/inputs"
-
+import { useLocalStorage } from 'usehooks-ts'
+import { SearchInput } from './inputs/inputs'
 
 export type TableIdentifier = Pick<SearchDto, 'table'>
 export type ColumnIdentifier = Pick<SearchColumnDto, 'name'>
@@ -28,13 +31,11 @@ export type SearchUpdateStateParams =
   | SearchResetAllParams
   | SearchResetSingleParams
 
-// TODO?: To fix ^ and also as a general improvement, this hook should probably integrate with Redux.
-// It's basically already using a redux-like pattern of actions, reducers etc.
-
-/* TODO?: Might be possible for the search state to become corrupt.
- * Not certain, but my thinking is that changes to the inputs can cause searchState to go out of sync with the localStorage. Unsure if simply adding/removing an input is enough, or perhaps if making bigger structural changes.
- * Leaving as-is for now, but if this becomes a problem we need a solution that compares localStorage with the current inputs and resets the state if they don't match.
- */
+/* TODO:
+  - Integrate with redux
+  - Add fix for corrupt search state: If inputs are changed, the search state can be out of sync with localStorage.
+    -> Think Redux can be configured to account for this using a specific reconciliation strategy.
+  */
 
 export const useSearchState = (key: SEARCH_KEY) => {
   // The type casting here is a bit ugly, but is the least convoluted way of adding type safety to the localStorage key and input map.
