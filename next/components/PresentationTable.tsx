@@ -1,13 +1,13 @@
 import { useSearchState } from '@/hooks/popover-search/use-search'
 import { FC } from 'react'
 
-type PresentationProps = {}
+type PresentationTableProps = {}
 
-export const Presentation: FC<PresentationProps> = ({}) => {
+export const PresentationTable: FC<PresentationTableProps> = ({}) => {
   const { searchState, updateState, getInput, hasValues, filterEmpty } =
-    useSearchState('sample')
+    useSearchState('mock')
 
   return <></>
 }
 
-export default Presentation
+export default PresentationTable

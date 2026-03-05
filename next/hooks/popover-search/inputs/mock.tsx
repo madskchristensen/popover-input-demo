@@ -2,7 +2,7 @@ import { CarBrand, CarModel, CarVersion } from '../../../mock/country'
 import { getCountryOptions } from '../utils/country'
 import { SearchInputDto, SelectOption } from '.'
 
-export const searchStateSample: SearchInputDto[] = [
+export const searchStateMock: SearchInputDto[] = [
   {
     table: 'mock',
     inputs: [
