@@ -7,7 +7,17 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobCategory"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -29,7 +39,14 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCategory"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -52,7 +69,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCategory"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -83,7 +107,14 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCategory"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -115,10 +146,38 @@
     "/job-role": {
       "get": {
         "operationId": "JobRoleController_findAll",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "jobCategoryId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobRole"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -140,7 +199,14 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobRole"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -163,7 +229,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobRole"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -194,7 +267,14 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobRole"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -226,10 +306,73 @@
     "/job-application": {
       "get": {
         "operationId": "JobApplicationController_findAll",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "NEW",
+                "PENDING_REVIEW",
+                "IN_REVIEW",
+                "REVIEWED",
+                "SHORTLISTED",
+                "REJECTED"
+              ]
+            }
+          },
+          {
+            "name": "jobRoleId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "jobCategoryId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minLength": 2,
+              "maxLength": 2,
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobApplicationEntity"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -251,7 +394,14 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobApplicationEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -274,7 +424,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobApplicationEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -305,7 +462,14 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobApplicationEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -345,25 +509,212 @@
   "servers": [],
   "components": {
     "schemas": {
+      "JobCategory": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobRole"
+            }
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "code",
+          "roles",
+          "id"
+        ]
+      },
+      "JobApplicationEntity": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "NEW",
+              "PENDING_REVIEW",
+              "IN_REVIEW",
+              "REVIEWED",
+              "SHORTLISTED",
+              "REJECTED"
+            ],
+            "type": "string"
+          },
+          "jobRoleId": {
+            "type": "string"
+          },
+          "jobRole": {
+            "$ref": "#/components/schemas/JobRole"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "country",
+          "status",
+          "jobRoleId",
+          "jobRole",
+          "createdAt",
+          "updatedAt",
+          "id"
+        ]
+      },
+      "JobRole": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "jobCategoryId": {
+            "type": "string"
+          },
+          "jobCategory": {
+            "$ref": "#/components/schemas/JobCategory"
+          },
+          "applications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobApplicationEntity"
+            }
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "jobCategoryId",
+          "jobCategory",
+          "applications",
+          "id"
+        ]
+      },
       "CreateJobCategoryDto": {
         "type": "object",
         "properties": {}
       },
       "CreateJobRoleDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "jobCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "title",
+          "jobCategoryId"
+        ]
       },
       "UpdateJobRoleDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "title": {
+            "type": "string"
+          }
+        }
       },
       "CreateJobApplicationDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "someTest": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "country": {
+            "type": "string"
+          },
+          "jobRoleId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "firstName",
+          "someTest",
+          "lastName",
+          "email",
+          "country",
+          "jobRoleId"
+        ]
       },
       "UpdateJobApplicationDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "country": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "NEW",
+              "PENDING_REVIEW",
+              "IN_REVIEW",
+              "REVIEWED",
+              "SHORTLISTED",
+              "REJECTED"
+            ]
+          },
+          "jobRoleId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
       }
     }
   }
