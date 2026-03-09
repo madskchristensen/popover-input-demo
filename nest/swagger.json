@@ -1,0 +1,374 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/job-categories": {
+      "get": {
+        "operationId": "JobCategoryController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobCategory"
+        ]
+      },
+      "post": {
+        "operationId": "JobCategoryController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobCategoryDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobCategory"
+        ]
+      }
+    },
+    "/job-categories/{id}": {
+      "get": {
+        "operationId": "JobCategoryController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobCategory"
+        ]
+      },
+      "patch": {
+        "operationId": "JobCategoryController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateJobCategoryDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobCategory"
+        ]
+      },
+      "delete": {
+        "operationId": "JobCategoryController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobCategory"
+        ]
+      }
+    },
+    "/job-roles": {
+      "get": {
+        "operationId": "JobRoleController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobRole"
+        ]
+      },
+      "post": {
+        "operationId": "JobRoleController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobRoleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobRole"
+        ]
+      }
+    },
+    "/job-roles/{id}": {
+      "get": {
+        "operationId": "JobRoleController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobRole"
+        ]
+      },
+      "patch": {
+        "operationId": "JobRoleController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateJobRoleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobRole"
+        ]
+      },
+      "delete": {
+        "operationId": "JobRoleController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobRole"
+        ]
+      }
+    },
+    "/job-applications": {
+      "get": {
+        "operationId": "JobApplicationController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobApplication"
+        ]
+      },
+      "post": {
+        "operationId": "JobApplicationController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateJobApplicationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobApplication"
+        ]
+      }
+    },
+    "/job-applications/{id}": {
+      "get": {
+        "operationId": "JobApplicationController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobApplication"
+        ]
+      },
+      "patch": {
+        "operationId": "JobApplicationController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateJobApplicationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobApplication"
+        ]
+      },
+      "delete": {
+        "operationId": "JobApplicationController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "JobApplication"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Job Applications API",
+    "description": "API for managing job applications",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "CreateJobCategoryDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateJobCategoryDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateJobRoleDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateJobRoleDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateJobApplicationDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateJobApplicationDto": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}
