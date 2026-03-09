@@ -1,0 +1,8 @@
+export enum ApplicationStatus {
+  NEW = 'NEW',
+  PENDING_REVIEW = 'PENDING_REVIEW',
+  IN_REVIEW = 'IN_REVIEW',
+  REVIEWED = 'REVIEWED',
+  SHORTLISTED = 'SHORTLISTED',
+  REJECTED = 'REJECTED',
+}

@@ -1,10 +1,27 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { JobApplicationModule } from './job-application/job-application.module'
+import { JobApplication } from './job-application/entities/job-application.entity'
+import { JobCategory } from './job-category/entities/job-category.entity'
+import { JobRole } from './job-role/entities/job-role.entity'
+import { JobCategoryModule } from './job-category/job-category.module'
+import { JobRoleModule } from './job-role/job-role.module'
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DB_HOST ?? 'localhost',
+      port: Number(process.env.DB_PORT) ?? 5432,
+      username: process.env.DB_USER ?? 'postgres',
+      password: process.env.DB_PASSWORD ?? 'postgres',
+      database: process.env.DB_NAME ?? 'job_applications',
+      entities: [JobCategory, JobRole, JobApplication],
+      synchronize: true, // disable in production — use migrations
+    }),
+    JobCategoryModule,
+    JobRoleModule,
+    JobApplicationModule,
+  ],
 })
 export class AppModule {}
