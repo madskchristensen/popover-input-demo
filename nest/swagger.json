@@ -20,9 +20,7 @@
             }
           }
         },
-        "tags": [
-          "JobCategory"
-        ]
+        "tags": ["JobCategory"]
       },
       "post": {
         "operationId": "JobCategoryController_create",
@@ -49,9 +47,7 @@
             }
           }
         },
-        "tags": [
-          "JobCategory"
-        ]
+        "tags": ["JobCategory"]
       }
     },
     "/job-category/{id}": {
@@ -79,9 +75,7 @@
             }
           }
         },
-        "tags": [
-          "JobCategory"
-        ]
+        "tags": ["JobCategory"]
       },
       "patch": {
         "operationId": "JobCategoryController_update",
@@ -117,9 +111,7 @@
             }
           }
         },
-        "tags": [
-          "JobCategory"
-        ]
+        "tags": ["JobCategory"]
       },
       "delete": {
         "operationId": "JobCategoryController_remove",
@@ -138,9 +130,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "JobCategory"
-        ]
+        "tags": ["JobCategory"]
       }
     },
     "/job-role": {
@@ -180,9 +170,7 @@
             }
           }
         },
-        "tags": [
-          "JobRole"
-        ]
+        "tags": ["JobRole"]
       },
       "post": {
         "operationId": "JobRoleController_create",
@@ -209,9 +197,7 @@
             }
           }
         },
-        "tags": [
-          "JobRole"
-        ]
+        "tags": ["JobRole"]
       }
     },
     "/job-role/{id}": {
@@ -239,9 +225,7 @@
             }
           }
         },
-        "tags": [
-          "JobRole"
-        ]
+        "tags": ["JobRole"]
       },
       "patch": {
         "operationId": "JobRoleController_update",
@@ -277,9 +261,7 @@
             }
           }
         },
-        "tags": [
-          "JobRole"
-        ]
+        "tags": ["JobRole"]
       },
       "delete": {
         "operationId": "JobRoleController_remove",
@@ -298,9 +280,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "JobRole"
-        ]
+        "tags": ["JobRole"]
       }
     },
     "/job-application": {
@@ -368,16 +348,14 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/JobApplicationEntity"
+                    "$ref": "#/components/schemas/JobApplication"
                   }
                 }
               }
             }
           }
         },
-        "tags": [
-          "JobApplication"
-        ]
+        "tags": ["JobApplication"]
       },
       "post": {
         "operationId": "JobApplicationController_create",
@@ -398,15 +376,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JobApplicationEntity"
+                  "$ref": "#/components/schemas/JobApplication"
                 }
               }
             }
           }
         },
-        "tags": [
-          "JobApplication"
-        ]
+        "tags": ["JobApplication"]
       }
     },
     "/job-application/{id}": {
@@ -428,15 +404,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JobApplicationEntity"
+                  "$ref": "#/components/schemas/JobApplication"
                 }
               }
             }
           }
         },
-        "tags": [
-          "JobApplication"
-        ]
+        "tags": ["JobApplication"]
       },
       "patch": {
         "operationId": "JobApplicationController_update",
@@ -466,15 +440,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JobApplicationEntity"
+                  "$ref": "#/components/schemas/JobApplication"
                 }
               }
             }
           }
         },
-        "tags": [
-          "JobApplication"
-        ]
+        "tags": ["JobApplication"]
       },
       "delete": {
         "operationId": "JobApplicationController_remove",
@@ -493,9 +465,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "JobApplication"
-        ]
+        "tags": ["JobApplication"]
       }
     }
   },
@@ -528,14 +498,9 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "code",
-          "roles",
-          "id"
-        ]
+        "required": ["name", "code", "roles", "id"]
       },
-      "JobApplicationEntity": {
+      "JobApplication": {
         "type": "object",
         "properties": {
           "firstName": {
@@ -607,7 +572,7 @@
           "applications": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/JobApplicationEntity"
+              "$ref": "#/components/schemas/JobApplication"
             }
           },
           "id": {
@@ -637,10 +602,7 @@
             "format": "uuid"
           }
         },
-        "required": [
-          "title",
-          "jobCategoryId"
-        ]
+        "required": ["title", "jobCategoryId"]
       },
       "UpdateJobRoleDto": {
         "type": "object",
@@ -654,9 +616,6 @@
         "type": "object",
         "properties": {
           "firstName": {
-            "type": "string"
-          },
-          "someTest": {
             "type": "string"
           },
           "lastName": {
@@ -674,14 +633,7 @@
             "format": "uuid"
           }
         },
-        "required": [
-          "firstName",
-          "someTest",
-          "lastName",
-          "email",
-          "country",
-          "jobRoleId"
-        ]
+        "required": ["firstName", "lastName", "email", "country", "jobRoleId"]
       },
       "UpdateJobApplicationDto": {
         "type": "object",
