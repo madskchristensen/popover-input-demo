@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "./",
+      "name": "root",
+    },
+    {
+      "path": "nest",
+      "name": "nest",
+    },
+    {
+      "path": "next",
+      "name": "next",
+    },
+  ],
+  "settings": {
+    "typescript.tsdk": "nest\\node_modules\\typescript\\lib",
+  },
+}

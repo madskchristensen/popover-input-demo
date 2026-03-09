@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { JobApplicationModule } from './job-application/job-application.module'
-import { JobCategory } from './job-category/entities/job-category.entity'
 import { JobRole } from './domain/job/role/entities/job-role.entity'
-import { JobCategoryModule } from './job-category/job-category.module'
 import { JobRoleModule } from './domain/job/role/job-role.module'
 import { JobApplication } from './domain/job/application/entities/job-application.entity'
+import { JobCategory } from './domain/job/category/entities/job-category.entity'
+import { JobCategoryModule } from './domain/job/category/job-category.module'
+import { JobApplicationModule } from './domain/job/application/job-application.module'
 
 @Module({
   imports: [
