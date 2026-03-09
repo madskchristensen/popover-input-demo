@@ -6,6 +6,7 @@ import { JobApplication } from './domain/job/application/entities/job-applicatio
 import { JobCategory } from './domain/job/category/entities/job-category.entity'
 import { JobCategoryModule } from './domain/job/category/job-category.module'
 import { JobApplicationModule } from './domain/job/application/job-application.module'
+import { SeederModule } from './seeder/seeder.module'
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { JobApplicationModule } from './domain/job/application/job-application.m
       entities: [JobCategory, JobRole, JobApplication],
       synchronize: true, // disable in production — use migrations
     }),
+    SeederModule,
     JobCategoryModule,
     JobRoleModule,
     JobApplicationModule,
