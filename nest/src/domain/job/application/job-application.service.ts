@@ -33,7 +33,7 @@ export class JobApplicationService {
       })
     }
 
-    // isDependentOn in action: filter by category via the role relation
+    // isDependentOn -> filter by category via the role relation
     if (query.jobCategoryId) {
       qb.andWhere('jobRole.jobCategoryId = :jobCategoryId', {
         jobCategoryId: query.jobCategoryId,
