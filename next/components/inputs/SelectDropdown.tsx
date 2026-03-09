@@ -1,5 +1,5 @@
 import { SelectOption } from '@/hooks/popover-search/inputs'
-import { FC, JSX, MutableRefObject } from 'react'
+import { FC, MutableRefObject } from 'react'
 import Select from 'react-select'
 import StateManagerProps from 'react-select'
 

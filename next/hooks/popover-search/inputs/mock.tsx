@@ -1,5 +1,3 @@
-import { CarBrand, CarModel, CarVersion } from '../../../mock/country'
-import { getCountryOptions } from '../utils/country'
 import { SearchInputDto, SelectOption } from '.'
 
 export const searchStateMock: SearchInputDto[] = [
@@ -16,7 +14,8 @@ export const searchStateMock: SearchInputDto[] = [
         label: 'VIN',
         type: 'text',
       },
-      {
+      // TODO: implement
+      /*       {
         name: 'carBrand',
         label: 'Brand',
         type: 'dropdown',
@@ -26,8 +25,9 @@ export const searchStateMock: SearchInputDto[] = [
             value: brand.title,
           }))
         },
-      },
-      {
+      }, */
+      // TODO: implement
+      /*       {
         name: 'carModel',
         label: 'Model',
         type: 'dropdown',
@@ -41,8 +41,9 @@ export const searchStateMock: SearchInputDto[] = [
           table: 'mock',
           column: 'carBrand',
         },
-      },
-      {
+      }, */
+      // TODO: implement
+      /*       {
         name: 'carVersion',
         label: 'Version',
         type: 'dropdown',
@@ -56,13 +57,14 @@ export const searchStateMock: SearchInputDto[] = [
           table: 'mock',
           column: 'carModel',
         },
-      },
-      {
+      }, */
+      // TODO: Country
+      /*       {
         name: 'countryCode',
         label: 'Country',
         type: 'dropdown',
         transformer: getCountryOptions,
-      },
+      }, */
     ],
   },
   {
