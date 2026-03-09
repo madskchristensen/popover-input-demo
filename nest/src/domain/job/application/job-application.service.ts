@@ -7,7 +7,7 @@ import {
   QueryJobApplicationDto,
   UpdateJobApplicationDto,
 } from './dtos/job-application.dto'
-import { JobRoleService } from '../job-role/job-role.service'
+import { JobRoleService } from '../role/job-role.service'
 
 @Injectable()
 export class JobApplicationService {

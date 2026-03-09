@@ -8,7 +8,7 @@ import {
   IsUUID,
   Length,
 } from 'class-validator'
-import { ApplicationStatus } from 'src/enums/application-status'
+import { ApplicationStatus } from 'src/domain/job/enums/application-status'
 
 export class CreateJobApplicationDto {
   @IsString()
@@ -23,7 +23,6 @@ export class CreateJobApplicationDto {
   email: string
 
   @IsString()
-  @Length(2, 2)
   @IsISO31661Alpha2({
     message: 'country must be an ISO 3166-1 alpha-2 code e.g. DK',
   })
@@ -47,8 +46,10 @@ export class UpdateJobApplicationDto {
   email?: string
 
   @IsString()
-  @Length(2, 2)
   @IsOptional()
+  @IsISO31661Alpha2({
+    message: 'country must be an ISO 3166-1 alpha-2 code e.g. DK',
+  })
   country?: string
 
   @IsEnum(ApplicationStatus)
