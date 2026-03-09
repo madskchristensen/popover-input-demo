@@ -16,6 +16,7 @@ async function exportSwagger() {
   const document = SwaggerModule.createDocument(app, config)
 
   const outputPath = resolve(process.cwd(), 'swagger.json')
+
   writeFileSync(outputPath, JSON.stringify(document, null, 2), 'utf8')
   console.log(`Swagger JSON written to ${outputPath}`)
 

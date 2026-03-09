@@ -17,7 +17,7 @@ import {
   UpdateJobApplicationDto,
 } from './dtos/job-application.dto'
 
-@Controller('job-applications')
+@Controller('job-application')
 export class JobApplicationController {
   constructor(private readonly service: JobApplicationService) {}
 

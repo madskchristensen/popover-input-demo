@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/job-categories": {
+    "/job-category": {
       "get": {
         "operationId": "JobCategoryController_findAll",
         "parameters": [],
@@ -37,7 +37,7 @@
         ]
       }
     },
-    "/job-categories/{id}": {
+    "/job-category/{id}": {
       "get": {
         "operationId": "JobCategoryController_findOne",
         "parameters": [
@@ -76,7 +76,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateJobCategoryDto"
+                "$ref": "#/components/schemas/CreateJobCategoryDto"
               }
             }
           }
@@ -112,7 +112,7 @@
         ]
       }
     },
-    "/job-roles": {
+    "/job-role": {
       "get": {
         "operationId": "JobRoleController_findAll",
         "parameters": [],
@@ -148,7 +148,7 @@
         ]
       }
     },
-    "/job-roles/{id}": {
+    "/job-role/{id}": {
       "get": {
         "operationId": "JobRoleController_findOne",
         "parameters": [
@@ -223,7 +223,7 @@
         ]
       }
     },
-    "/job-applications": {
+    "/job-application": {
       "get": {
         "operationId": "JobApplicationController_findAll",
         "parameters": [],
@@ -259,7 +259,7 @@
         ]
       }
     },
-    "/job-applications/{id}": {
+    "/job-application/{id}": {
       "get": {
         "operationId": "JobApplicationController_findOne",
         "parameters": [
@@ -346,10 +346,6 @@
   "components": {
     "schemas": {
       "CreateJobCategoryDto": {
-        "type": "object",
-        "properties": {}
-      },
-      "UpdateJobCategoryDto": {
         "type": "object",
         "properties": {}
       },

@@ -11,13 +11,10 @@ import {
   Query,
 } from '@nestjs/common'
 import { JobCategoryService } from './job-category.service'
-import {
-  CreateJobCategoryDto,
-  QueryJobCategoryDto,
-  UpdateJobCategoryDto,
-} from './dtos/job-category.dto'
+import { QueryJobCategoryDto } from './dtos/query'
+import { CreateJobCategoryDto } from './dtos/create'
 
-@Controller('job-categories')
+@Controller('job-category')
 export class JobCategoryController {
   constructor(private readonly service: JobCategoryService) {}
 
@@ -37,7 +34,7 @@ export class JobCategoryController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() dto: UpdateJobCategoryDto) {
+  update(@Param('id') id: string, @Body() dto: CreateJobCategoryDto) {
     return this.service.update(id, dto)
   }
 

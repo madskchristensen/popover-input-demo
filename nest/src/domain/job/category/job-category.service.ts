@@ -2,11 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { ILike, Repository } from 'typeorm'
 import { JobCategory } from './entities/job-category.entity'
-import {
-  CreateJobCategoryDto,
-  QueryJobCategoryDto,
-  UpdateJobCategoryDto,
-} from './dtos/job-category.dto'
+import { QueryJobCategoryDto } from './dtos/query'
+import { CreateJobCategoryDto } from './dtos/create'
 
 @Injectable()
 export class JobCategoryService {
@@ -36,7 +33,7 @@ export class JobCategoryService {
     return this.repo.save(category)
   }
 
-  async update(id: string, dto: UpdateJobCategoryDto): Promise<JobCategory> {
+  async update(id: string, dto: CreateJobCategoryDto): Promise<JobCategory> {
     const category = await this.findOne(id)
     Object.assign(category, dto)
     return this.repo.save(category)
