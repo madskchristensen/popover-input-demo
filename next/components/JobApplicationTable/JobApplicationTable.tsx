@@ -13,7 +13,6 @@ import { SortingState, Updater } from '@tanstack/react-table'
 import TableActionBar from './components/TableActionBar'
 import useIntersectionObserver from '@/hooks/intersection'
 import { useJobApplicationControllerFindAllInfinite } from '@/orval/generated/api/job-application/job-application'
-import { JobApplicationStatus } from '@/orval/generated/models'
 
 type JobApplicationTableProps = {}
 
