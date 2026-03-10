@@ -1,5 +1,6 @@
 import { ApiResponseProperty } from '@nestjs/swagger'
 
+// TODO: Maybe rename totalFound and totalPages -> total, pages
 export class PageDtoPagination {
   @ApiResponseProperty()
   currentPage: number

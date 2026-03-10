@@ -1,4 +1,7 @@
+import { Type } from 'class-transformer'
 import {
+  ArrayMinSize,
+  IsArray,
   IsEmail,
   IsEnum,
   IsISO31661Alpha2,
@@ -7,8 +10,11 @@ import {
   IsString,
   IsUUID,
   Length,
+  ValidateNested,
 } from 'class-validator'
 import { ApplicationStatus } from 'src/domain/job/enums/application-status'
+import { PageOptionsDto } from 'src/pagination/dtos/page-options.dto'
+import { SearchDto } from 'src/search/dtos/search.dto'
 
 export class CreateJobApplicationDto {
   @IsString()
@@ -61,7 +67,8 @@ export class UpdateJobApplicationDto {
   jobRoleId?: string
 }
 
-export class QueryJobApplicationDto {
+// TODO: Check jobRoleId, jobCategoryId, country. Might be redundant due to search
+export class QueryJobApplicationDto extends PageOptionsDto {
   @IsOptional()
   @IsEnum(ApplicationStatus)
   status?: ApplicationStatus
@@ -80,6 +87,9 @@ export class QueryJobApplicationDto {
   country?: string
 
   @IsOptional()
-  @IsString()
-  search?: string // Matches against firstName, lastName, email
+  @IsArray()
+  @ArrayMinSize(1)
+  @ValidateNested({ each: true })
+  @Type(() => SearchDto)
+  search?: SearchDto[] // The OpenAPI schema for this property is generated using the ApiSearchQuery decorator
 }

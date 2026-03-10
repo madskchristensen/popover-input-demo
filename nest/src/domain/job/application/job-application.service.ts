@@ -17,7 +17,9 @@ export class JobApplicationService {
     private readonly jobRoleService: JobRoleService,
   ) {}
 
-  async findAll(query: QueryJobApplicationDto): Promise<JobApplication[]> {
+  async findAll(
+    query: QueryJobApplicationDto,
+  ): Promise<[JobApplication[], number]> {
     const qb = this.repo
       .createQueryBuilder('application')
       .leftJoinAndSelect('application.jobRole', 'jobRole')
@@ -51,7 +53,7 @@ export class JobApplicationService {
       )
     }
 
-    return qb.orderBy('application.createdAt', 'DESC').getMany()
+    return qb.orderBy('application.createdAt', 'DESC').getManyAndCount()
   }
 
   async findOne(id: string): Promise<JobApplication> {
