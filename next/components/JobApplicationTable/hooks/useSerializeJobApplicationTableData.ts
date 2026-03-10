@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { JobApplicationTableItem } from '../JobApplicationTable'
 import { DateTime } from 'luxon'
 import { JobApplication } from '@/orval/generated/models'
+import { JobApplicationTableItem } from '../types/TableItem'
 
 // TODO: Adjust namings, data etc.
 export const useSerializeJobApplicationTableData = (

@@ -1,11 +1,10 @@
 import { createColumnHelper } from '@tanstack/react-table'
 import { useMemo } from 'react'
-import { Spinner } from '@chakra-ui/react'
 import Checkbox from '@/components/Checkbox' // TODO: Replace with chakras checkbox
 import PhotoCell from '../Cells/PhotoCell'
 import CarAndOwnerCell from '../Cells/CarAndOwnerCell'
 import NextIcon from '@/public/next.svg' // TODO: Add this to project
-import { JobApplicationTableItem } from '../JobApplicationTable'
+import { JobApplicationTableItem } from '../types/TableItem'
 
 type UseJobApplicationTableColumnsProps = {
   data: JobApplicationTableItem[]

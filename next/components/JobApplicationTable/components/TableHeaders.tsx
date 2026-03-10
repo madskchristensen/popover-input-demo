@@ -1,7 +1,7 @@
 import IconSortDown from '@/public/icon-sort-down.svg'
 import IconSortUp from '@/public/icon-sort-up.svg'
 import { flexRender, HeaderGroup } from '@tanstack/react-table'
-import { JobApplicationTableItem } from '../JobApplicationTable'
+import { JobApplicationTableItem } from '../types/TableItem'
 
 type TableHeadersProps = {
   headerGroups: HeaderGroup<JobApplicationTableItem>[]

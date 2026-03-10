@@ -13,26 +13,9 @@ import { SortingState, Updater } from '@tanstack/react-table'
 import TableActionBar from './components/TableActionBar'
 import useIntersectionObserver from '@/hooks/intersection'
 import { useJobApplicationControllerFindAllInfinite } from '@/orval/generated/api/job-application/job-application'
+import { JobApplicationStatus } from '@/orval/generated/models'
 
 type JobApplicationTableProps = {}
-
-// TODO: Adjust/modífy Maybe move to seperate types file.
-export type JobApplicationTableItem = {
-  id: string
-  car: string
-  owner: string
-  status: string | undefined
-  submittedDate: string
-  carNumber: string
-  country: string // Was CountryCode
-  documentsRequested: string
-  photosRequested: boolean
-  isRecurringSeller: boolean
-  primaryPhotoUrl?: string
-  resubmissionCount: number
-  contractSignedByBothParties: boolean
-  isCarPaid: boolean
-}
 
 export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
   const [sorting, setSorting] = useLocalStorage<SortingState>(

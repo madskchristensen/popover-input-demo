@@ -1,6 +1,6 @@
 import { flexRender, Row } from '@tanstack/react-table'
 import Link from 'next/link'
-import { JobApplicationTableItem } from '../JobApplicationTable'
+import { JobApplicationTableItem } from '../types/TableItem'
 
 type TableRowsProps = {
   rows: Row<JobApplicationTableItem>[]
