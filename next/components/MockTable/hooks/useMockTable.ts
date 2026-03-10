@@ -1,4 +1,3 @@
-import { SubmissionTableItem } from '@/generated-api/models'
 import {
   getCoreRowModel,
   getSortedRowModel,
@@ -11,9 +10,10 @@ import {
 import { useEffect, useMemo, useState } from 'react'
 import { useMockTableColumns } from './useMockTableColumns'
 import { useSerializeMockTableData } from './useSerializeMockData'
+import { JobApplication } from '@/orval/generated/models'
 
 interface UseMockTableProps {
-  rawData: SubmissionTableItem[]
+  rawData: JobApplication[]
   sorting: SortingState
   onSortingChange: (updater: Updater<SortingState>) => void
   clickedMock?: string

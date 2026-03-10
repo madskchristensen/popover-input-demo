@@ -25,9 +25,9 @@ import { ApiSearchQuery } from 'src/search/decorators/search.decorator'
 export class JobApplicationController {
   constructor(private readonly service: JobApplicationService) {}
 
-  @ApiPaginatedResponse(JobApplication)
-  @ApiSearchQuery()
   @Get()
+  @ApiSearchQuery()
+  @ApiPaginatedResponse(JobApplication)
   async findAll(@Query() query: QueryJobApplicationDto) {
     const [found, total] = await this.service.findAll(query)
 

@@ -1,9 +1,9 @@
-import { SubmissionTableItem } from '@/generated-api/models'
+import { JobApplication } from '@/orval/generated/models'
 import { Button, Flex, HStack, Text } from '@chakra-ui/react'
 import { FC, useMemo } from 'react'
 
 type TableActionBarProps = {
-  selected: SubmissionTableItem[]
+  selected: JobApplication[]
 }
 
 const TableActionBar: FC<TableActionBarProps> = ({ selected }) => {

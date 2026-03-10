@@ -1,5 +1,5 @@
 // TODO: Orval + typing
-import { SearchDto } from '@/generated-api/models'
+import { SearchDto } from '@/orval/generated/models'
 import { CarBrand } from '@/types/CarBrand'
 
 export const OPTIONS_SOURCE_MAP_KEYS = {

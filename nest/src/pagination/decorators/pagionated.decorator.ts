@@ -20,7 +20,6 @@ export const ApiPaginatedResponse = <TModel extends Type<unknown>>(
     ApiExtraModels(PageDto, model),
     ApiOkResponse({
       description: `The paginated result of ${model.name}`,
-
       schema: {
         title: `PaginatedResponseOf${model.name}`,
         allOf: [

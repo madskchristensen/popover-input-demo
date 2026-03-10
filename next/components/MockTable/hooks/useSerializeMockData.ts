@@ -1,12 +1,11 @@
-import { SubmissionTableItem } from '@/generated-api/models'
 import { useMemo } from 'react'
 import { MockForTable } from '../MockTable'
 import { DateTime } from 'luxon'
+import { JobApplication } from '@/orval/generated/models'
 
-/* Table data contains all submissions or submissions filtered by searchWord if searching */
 // TODO: Adjust namings, data etc.
 export const useSerializeMockTableData = (
-  mocks: SubmissionTableItem[],
+  mocks: JobApplication[],
 ): MockForTable[] => {
   const formatDate = (isoDate: string) =>
     DateTime.fromISO(isoDate).toFormat('dd//MM/yy')
