@@ -47,6 +47,8 @@ export class JobApplicationService {
     }
 
     if (query.search) {
+      // TODO: error  'query.search' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string (line 54)
+      // TODO: Invalid type "SearchDto[]" of template literal expression (line 53)
       qb.andWhere(
         '(application.firstName ILIKE :search OR application.lastName ILIKE :search OR application.email ILIKE :search)',
         { search: `%${query.search}%` },
