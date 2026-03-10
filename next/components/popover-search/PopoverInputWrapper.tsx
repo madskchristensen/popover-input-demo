@@ -2,7 +2,7 @@ import {
   SearchUpdateStateParams,
   TableIdentifier,
 } from '@/hooks/popover-search/use-search'
-import CloseIcon from '@/public/close.svg'
+import { CloseIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,

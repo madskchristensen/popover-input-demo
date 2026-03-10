@@ -1,7 +1,6 @@
-import IconSortDown from '@/public/icon-sort-down.svg'
-import IconSortUp from '@/public/icon-sort-up.svg'
 import { flexRender, HeaderGroup } from '@tanstack/react-table'
 import { JobApplicationTableItem } from '../types/TableItem'
+import { ChevronUpIcon, ChevronDownIcon, IconButton } from '@chakra-ui/icons'
 
 type TableHeadersProps = {
   headerGroups: HeaderGroup<JobApplicationTableItem>[]
@@ -35,12 +34,20 @@ const TableHeaders: React.FC<TableHeadersProps> = ({ headerGroups }) => {
                     {{
                       asc: (
                         <span className='inline-block ml-1'>
-                          <IconSortUp />
+                          <IconButton
+                            aria-label='Sort Up'
+                            className='inline'
+                            icon={<ChevronUpIcon />}
+                          />
                         </span>
                       ),
                       desc: (
                         <span className='inline-block ml-1'>
-                          <IconSortDown />
+                          <IconButton
+                            aria-label='Sort Down'
+                            className='inline'
+                            icon={<ChevronDownIcon />}
+                          />
                         </span>
                       ),
                     }[header.column.getIsSorted() as string] ?? null}

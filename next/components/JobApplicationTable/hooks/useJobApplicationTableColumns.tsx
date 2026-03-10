@@ -1,8 +1,9 @@
 import { createColumnHelper } from '@tanstack/react-table'
 import { useMemo } from 'react'
 import Checkbox from '@/components/Checkbox' // TODO: Replace with chakras checkbox
-import NextIcon from '@/public/next.svg' // TODO: Add this to project
+import { ChevronRightIcon } from '@chakra-ui/icons'
 import { JobApplicationTableItem } from '../types/TableItem'
+import { IconButton } from '@chakra-ui/react'
 
 type UseJobApplicationTableColumnsProps = {
   data: JobApplicationTableItem[]
@@ -112,7 +113,11 @@ export const useJobApplicationTableColumns = ({
         enableSorting: false,
         cell: () => (
           <div className='p-4 flex items-center justify-end'>
-            <NextIcon className='inline' />
+            <IconButton
+              aria-label='Go'
+              className='inline'
+              icon={<ChevronRightIcon />}
+            />
           </div>
         ),
       }),

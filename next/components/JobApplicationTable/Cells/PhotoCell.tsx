@@ -1,5 +1,6 @@
 import PhotoPlaceholderIcon from '@/public/placeholder-photo.svg' // TODO: add this to project
 
+// TODO: REMOVE? Unused atm
 type PhotoCellProps = {
   photoUrl?: string
 }
