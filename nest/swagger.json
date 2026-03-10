@@ -20,7 +20,9 @@
             }
           }
         },
-        "tags": ["JobCategory"]
+        "tags": [
+          "JobCategory"
+        ]
       },
       "post": {
         "operationId": "JobCategoryController_create",
@@ -47,7 +49,9 @@
             }
           }
         },
-        "tags": ["JobCategory"]
+        "tags": [
+          "JobCategory"
+        ]
       }
     },
     "/job-category/{id}": {
@@ -75,7 +79,9 @@
             }
           }
         },
-        "tags": ["JobCategory"]
+        "tags": [
+          "JobCategory"
+        ]
       },
       "patch": {
         "operationId": "JobCategoryController_update",
@@ -111,7 +117,9 @@
             }
           }
         },
-        "tags": ["JobCategory"]
+        "tags": [
+          "JobCategory"
+        ]
       },
       "delete": {
         "operationId": "JobCategoryController_remove",
@@ -130,7 +138,9 @@
             "description": ""
           }
         },
-        "tags": ["JobCategory"]
+        "tags": [
+          "JobCategory"
+        ]
       }
     },
     "/job-role": {
@@ -170,7 +180,9 @@
             }
           }
         },
-        "tags": ["JobRole"]
+        "tags": [
+          "JobRole"
+        ]
       },
       "post": {
         "operationId": "JobRoleController_create",
@@ -197,7 +209,9 @@
             }
           }
         },
-        "tags": ["JobRole"]
+        "tags": [
+          "JobRole"
+        ]
       }
     },
     "/job-role/{id}": {
@@ -225,7 +239,9 @@
             }
           }
         },
-        "tags": ["JobRole"]
+        "tags": [
+          "JobRole"
+        ]
       },
       "patch": {
         "operationId": "JobRoleController_update",
@@ -261,7 +277,9 @@
             }
           }
         },
-        "tags": ["JobRole"]
+        "tags": [
+          "JobRole"
+        ]
       },
       "delete": {
         "operationId": "JobRoleController_remove",
@@ -280,7 +298,9 @@
             "description": ""
           }
         },
-        "tags": ["JobRole"]
+        "tags": [
+          "JobRole"
+        ]
       }
     },
     "/job-application": {
@@ -336,26 +356,64 @@
             "required": false,
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SearchDto",
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 20,
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "The paginated result of JobApplication",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/JobApplication"
-                  }
+                  "title": "PaginatedResponseOfJobApplication",
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PageDto"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/JobApplication"
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
           }
         },
-        "tags": ["JobApplication"]
+        "tags": [
+          "JobApplication"
+        ]
       },
       "post": {
         "operationId": "JobApplicationController_create",
@@ -382,7 +440,9 @@
             }
           }
         },
-        "tags": ["JobApplication"]
+        "tags": [
+          "JobApplication"
+        ]
       }
     },
     "/job-application/{id}": {
@@ -410,7 +470,9 @@
             }
           }
         },
-        "tags": ["JobApplication"]
+        "tags": [
+          "JobApplication"
+        ]
       },
       "patch": {
         "operationId": "JobApplicationController_update",
@@ -446,7 +508,9 @@
             }
           }
         },
-        "tags": ["JobApplication"]
+        "tags": [
+          "JobApplication"
+        ]
       },
       "delete": {
         "operationId": "JobApplicationController_remove",
@@ -465,7 +529,9 @@
             "description": ""
           }
         },
-        "tags": ["JobApplication"]
+        "tags": [
+          "JobApplication"
+        ]
       }
     }
   },
@@ -498,7 +564,12 @@
             "type": "string"
           }
         },
-        "required": ["name", "code", "roles", "id"]
+        "required": [
+          "name",
+          "code",
+          "roles",
+          "id"
+        ]
       },
       "JobApplication": {
         "type": "object",
@@ -602,7 +673,10 @@
             "format": "uuid"
           }
         },
-        "required": ["title", "jobCategoryId"]
+        "required": [
+          "title",
+          "jobCategoryId"
+        ]
       },
       "UpdateJobRoleDto": {
         "type": "object",
@@ -611,6 +685,117 @@
             "type": "string"
           }
         }
+      },
+      "SearchPayload": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "exact": {
+            "type": "boolean"
+          },
+          "allowMultiple": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "value",
+          "exact"
+        ]
+      },
+      "SearchColumnDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/SearchPayload"
+          }
+        },
+        "required": [
+          "name",
+          "payload"
+        ]
+      },
+      "SearchDto": {
+        "type": "object",
+        "properties": {
+          "table": {
+            "type": "string"
+          },
+          "columns": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchColumnDto"
+            }
+          }
+        },
+        "required": [
+          "table",
+          "columns"
+        ]
+      },
+      "PageDtoPagination": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "number",
+            "readOnly": true
+          },
+          "nextPage": {
+            "type": "number",
+            "readOnly": true
+          },
+          "prevPage": {
+            "type": "number",
+            "readOnly": true
+          },
+          "found": {
+            "type": "number",
+            "readOnly": true
+          },
+          "totalFound": {
+            "type": "number",
+            "readOnly": true
+          },
+          "totalPages": {
+            "type": "number",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "currentPage",
+          "found",
+          "totalFound",
+          "totalPages"
+        ]
+      },
+      "PageDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "pagination": {
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PageDtoPagination"
+              }
+            ]
+          }
+        },
+        "required": [
+          "data",
+          "pagination"
+        ]
       },
       "CreateJobApplicationDto": {
         "type": "object",
@@ -633,7 +818,13 @@
             "format": "uuid"
           }
         },
-        "required": ["firstName", "lastName", "email", "country", "jobRoleId"]
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "country",
+          "jobRoleId"
+        ]
       },
       "UpdateJobApplicationDto": {
         "type": "object",
