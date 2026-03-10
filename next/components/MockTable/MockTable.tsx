@@ -12,6 +12,7 @@ import { useLocalStorage } from 'usehooks-ts'
 import { SortingState, Updater } from '@tanstack/react-table'
 import TableActionBar from './components/TableActionBar'
 import useIntersectionObserver from '@/hooks/intersection'
+import { useJobApplicationControllerFindAllInfinite } from '@/orval/generated/api/job-application/job-application'
 
 type MockTableProps = {}
 
@@ -96,12 +97,10 @@ export const MockTable: FC<MockTableProps> = ({}) => {
     fetchNextPage,
     hasNextPage,
     isFetchedAfterMount,
-  } = useGetMocksInfinite(
+  } = useJobApplicationControllerFindAllInfinite(
     {
       // ...submissionOptions, // TODO: Re-add once implemented above.
       search: filterEmpty(searchState),
-      sorting:
-        sorting?.[0] && `${sorting[0].id}:${sorting[0].desc ? 'DESC' : 'ASC'}`,
     },
     {
       query: {
@@ -143,9 +142,9 @@ export const MockTable: FC<MockTableProps> = ({}) => {
     enabled: hasNextPage && !isFetching,
   })
 
-  const errorMessage = error?.response?.data.error
-    ? error.response.data.error
-    : 'Something went wrong while fetching data.'
+  // TODO: error?.response?.data might not work. Unsure where the error data is put. Consider adding result interceptor to Nest with standardized format for responses.
+  const errorMessage =
+    error?.response?.data ?? 'Something went wrong while fetching data.'
 
   const isTableDataReady = isFetchedAfterMount && tableData.length > 0
 
