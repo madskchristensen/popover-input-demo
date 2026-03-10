@@ -1,10 +1,10 @@
 import IconSortDown from '@/public/icon-sort-down.svg'
 import IconSortUp from '@/public/icon-sort-up.svg'
 import { flexRender, HeaderGroup } from '@tanstack/react-table'
-import { MockForTable } from '../MockTable'
+import { JobApplicationTableItem } from '../JobApplicationTable'
 
 type TableHeadersProps = {
-  headerGroups: HeaderGroup<MockForTable>[]
+  headerGroups: HeaderGroup<JobApplicationTableItem>[]
 }
 
 const TableHeaders: React.FC<TableHeadersProps> = ({ headerGroups }) => {

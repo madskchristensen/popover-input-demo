@@ -8,15 +8,14 @@ import {
   VisibilityState,
 } from '@tanstack/react-table'
 import { useEffect, useMemo, useState } from 'react'
-import { useMockTableColumns } from './useMockTableColumns'
-import { useSerializeMockTableData } from './useSerializeMockData'
+import { useJobApplicationTableColumns } from './useJobApplicationTableColumns'
+import { useSerializeJobApplicationTableData } from './useSerializeJobApplicationTableData'
 import { JobApplication } from '@/orval/generated/models'
 
-interface UseMockTableProps {
+interface UseJobApplicationTableProps {
   rawData: JobApplication[]
   sorting: SortingState
   onSortingChange: (updater: Updater<SortingState>) => void
-  clickedMock?: string
   page: string | null
 }
 
@@ -35,13 +34,13 @@ const getColumnVisibilityForPage = (page: string | null): VisibilityState => {
   }
 }
 
-export const useMockTable = ({
+export const useJobApplicationTable = ({
   rawData,
   sorting,
   onSortingChange,
   page,
-}: UseMockTableProps) => {
-  const tableData = useSerializeMockTableData(rawData)
+}: UseJobApplicationTableProps) => {
+  const tableData = useSerializeJobApplicationTableData(rawData)
 
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
     () => getColumnVisibilityForPage(page),
@@ -58,8 +57,8 @@ export const useMockTable = ({
     setRowSelection({})
   }, [page])
 
-  const columns = useMockTableColumns({
-    tableData,
+  const columns = useJobApplicationTableColumns({
+    data: tableData,
   })
 
   const table = useReactTable({
@@ -82,7 +81,7 @@ export const useMockTable = ({
     getRowId: (row) => row.id,
   })
 
-  const selectedFetchedMocks = useMemo(() => {
+  const selectedFetchedData = useMemo(() => {
     return rawData.filter(({ id }) => rowSelection[id])
   }, [rawData, rowSelection])
 
@@ -91,6 +90,6 @@ export const useMockTable = ({
     rows: table.getRowModel().rows,
     tableData,
     columnVisibility,
-    selectedMocks: selectedFetchedMocks,
+    selectedFetchedData,
   }
 }

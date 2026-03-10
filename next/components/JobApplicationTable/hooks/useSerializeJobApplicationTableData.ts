@@ -1,17 +1,17 @@
 import { useMemo } from 'react'
-import { MockForTable } from '../MockTable'
+import { JobApplicationTableItem } from '../JobApplicationTable'
 import { DateTime } from 'luxon'
 import { JobApplication } from '@/orval/generated/models'
 
 // TODO: Adjust namings, data etc.
-export const useSerializeMockTableData = (
-  mocks: JobApplication[],
-): MockForTable[] => {
+export const useSerializeJobApplicationTableData = (
+  data: JobApplication[],
+): JobApplicationTableItem[] => {
   const formatDate = (isoDate: string) =>
     DateTime.fromISO(isoDate).toFormat('dd//MM/yy')
 
   return useMemo(() => {
-    return mocks.map((submission) => {
+    return data.map((submission) => {
       const contractSignedByBothParties = Boolean(
         submission.contractSignedByAdminAt,
       )
@@ -33,5 +33,5 @@ export const useSerializeMockTableData = (
         isCarPaid: submission.car.paymentStatus === 'PAID',
       }
     })
-  }, [mocks])
+  }, [data])
 }

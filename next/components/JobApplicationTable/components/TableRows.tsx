@@ -1,9 +1,9 @@
 import { flexRender, Row } from '@tanstack/react-table'
 import Link from 'next/link'
-import { MockForTable } from '../MockTable'
+import { JobApplicationTableItem } from '../JobApplicationTable'
 
 type TableRowsProps = {
-  rows: Row<MockForTable>[]
+  rows: Row<JobApplicationTableItem>[]
   page: string | null
 }
 

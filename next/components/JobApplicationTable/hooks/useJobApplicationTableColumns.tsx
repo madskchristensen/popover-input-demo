@@ -5,17 +5,17 @@ import Checkbox from '@/components/Checkbox' // TODO: Replace with chakras check
 import PhotoCell from '../Cells/PhotoCell'
 import CarAndOwnerCell from '../Cells/CarAndOwnerCell'
 import NextIcon from '@/public/next.svg' // TODO: Add this to project
-import { MockForTable } from '../MockTable'
+import { JobApplicationTableItem } from '../JobApplicationTable'
 
-type UseMockTableColumnsProps = {
-  tableData: MockForTable[]
+type UseJobApplicationTableColumnsProps = {
+  data: JobApplicationTableItem[]
 }
 
-const columnHelper = createColumnHelper<MockForTable>()
+const columnHelper = createColumnHelper<JobApplicationTableItem>()
 
-export const useMockTableColumns = ({
-  tableData,
-}: UseMockTableColumnsProps) => {
+export const useJobApplicationTableColumns = ({
+  data,
+}: UseJobApplicationTableColumnsProps) => {
   return useMemo(
     () => [
       columnHelper.display({
@@ -35,7 +35,7 @@ export const useMockTableColumns = ({
           const { id } = row.original
 
           return (
-            <div className={`${tableData.length === 1 ? 'pb-2' : ''}`}>
+            <div className={`${data.length === 1 ? 'pb-2' : ''}`}>
               <Checkbox
                 name={id}
                 checked={row.getIsSelected()}
@@ -111,6 +111,6 @@ export const useMockTableColumns = ({
         ),
       }),
     ],
-    [tableData],
+    [data],
   )
 }

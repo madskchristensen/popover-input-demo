@@ -3,7 +3,7 @@ import { Button, Spinner } from '@chakra-ui/react'
 import { FC, useEffect, useMemo, useRef } from 'react'
 import FilterBox from '../inputs/FilterBox'
 import { OPTIONS_SOURCE_MAP_KEYS } from './utils'
-import { useMockTable } from './hooks/useMockTable'
+import { useJobApplicationTable } from './hooks/useJobApplicationTable'
 import EmptyState from './components/EmptyState'
 import TableHeaders from './components/TableHeaders'
 import TableRows from './components/TableRows'
@@ -14,10 +14,10 @@ import TableActionBar from './components/TableActionBar'
 import useIntersectionObserver from '@/hooks/intersection'
 import { useJobApplicationControllerFindAllInfinite } from '@/orval/generated/api/job-application/job-application'
 
-type MockTableProps = {}
+type JobApplicationTableProps = {}
 
-// TODO: Adjust/modífy for mock setup. Maybe move to seperate types file.
-export type MockForTable = {
+// TODO: Adjust/modífy Maybe move to seperate types file.
+export type JobApplicationTableItem = {
   id: string
   car: string
   owner: string
@@ -34,8 +34,11 @@ export type MockForTable = {
   isCarPaid: boolean
 }
 
-export const MockTable: FC<MockTableProps> = ({}) => {
-  const [sorting, setSorting] = useLocalStorage<SortingState>('sortingMock', [])
+export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
+  const [sorting, setSorting] = useLocalStorage<SortingState>(
+    'jobApplication',
+    [],
+  )
 
   const listEndRef = useRef(null)
 
@@ -54,7 +57,7 @@ export const MockTable: FC<MockTableProps> = ({}) => {
 
   // TODO: getInput is not used with the newer changes. Maybe remove from implementation entirely?
   const { searchState, updateState, getInput, hasValues, filterEmpty } =
-    useSearchState('mock')
+    useSearchState('jobApplication')
 
   // TODO: Replace with actual data.
   // TODO: See reference code. Usage of getSelectedResourceId for brand and version
@@ -92,7 +95,7 @@ export const MockTable: FC<MockTableProps> = ({}) => {
   const {
     isFetching,
     isError,
-    data: mocksInfinite,
+    data: jobApplicationsInfinite,
     error,
     fetchNextPage,
     hasNextPage,
@@ -111,14 +114,14 @@ export const MockTable: FC<MockTableProps> = ({}) => {
     },
   )
 
-  const flattenedMocks = useMemo(
-    () => mocksInfinite?.pages.map((page) => page.data).flat() ?? [],
-    [mocksInfinite],
+  const flatJobApplicationsData = useMemo(
+    () => jobApplicationsInfinite?.pages.map((page) => page.data).flat() ?? [],
+    [jobApplicationsInfinite],
   )
 
-  const { table, rows, tableData, columnVisibility, selectedMocks } =
-    useMockTable({
-      rawData: flattenedMocks,
+  const { table, rows, tableData, columnVisibility, selectedFetchedData } =
+    useJobApplicationTable({
+      rawData: flatJobApplicationsData,
       sorting,
       onSortingChange: setAndSaveSorting,
       page,
@@ -143,8 +146,8 @@ export const MockTable: FC<MockTableProps> = ({}) => {
   })
 
   // TODO: error?.response?.data might not work. Unsure where the error data is put. Consider adding result interceptor to Nest with standardized format for responses.
-  const errorMessage =
-    error?.response?.data ?? 'Something went wrong while fetching data.'
+  // error?.response?.data ?? 'Something went wrong while fetching data.'
+  const errorMessage = 'Something went wrong while fetching data.'
 
   const isTableDataReady = isFetchedAfterMount && tableData.length > 0
 
@@ -160,7 +163,7 @@ export const MockTable: FC<MockTableProps> = ({}) => {
                   table={table}
                   columns={columns}
                   optionsSourceMap={optionsSourceMap}
-                  searchKey='mock'
+                  searchKey='jobApplication'
                 />
               )
             })}
@@ -180,7 +183,7 @@ export const MockTable: FC<MockTableProps> = ({}) => {
           </Button>
         </div>
 
-        <TableActionBar selected={selectedMocks} />
+        <TableActionBar selected={selectedFetchedData} />
 
         {!isFetching && !isTableDataReady && (
           <EmptyState isError={isError} errorMessage={errorMessage} />
@@ -212,4 +215,4 @@ export const MockTable: FC<MockTableProps> = ({}) => {
   )
 }
 
-export default MockTable
+export default JobApplicationTable

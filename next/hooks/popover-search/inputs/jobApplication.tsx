@@ -1,6 +1,7 @@
 import { SearchInputDto, SelectOption } from '.'
 
-export const searchStateMock: SearchInputDto[] = [
+// TODO: Implement data structure
+export const searchStateJobApplication: SearchInputDto[] = [
   {
     table: 'mock',
     inputs: [
