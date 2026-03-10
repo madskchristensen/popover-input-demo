@@ -3,7 +3,7 @@ import { SearchInputDto, SelectOption } from '.'
 // TODO: Implement data structure
 export const searchStateJobApplication: SearchInputDto[] = [
   {
-    table: 'mock',
+    table: 'jobApplication',
     inputs: [
       {
         name: 'carNumber',

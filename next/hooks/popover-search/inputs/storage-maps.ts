@@ -5,10 +5,10 @@ import { searchStateJobApplication } from './jobApplication'
 // This solution allows us to bypass the need for saving the inputs in localStorage, which could cause weird issues, especially with functions,
 // since they can't be serialized/deserialized by default.
 
-export type SEARCH_KEY = 'jobApplication'
+export type SEARCH_KEY = 'job-application'
 type SEARCH_KEY_LOCAL_STORAGE_PREFIX = `searchState`
 export type SEARCH_KEY_LOCAL_STORAGE =
-  `${SEARCH_KEY_LOCAL_STORAGE_PREFIX}${Capitalize<SEARCH_KEY>}`
+  `${SEARCH_KEY_LOCAL_STORAGE_PREFIX}-${SEARCH_KEY}`
 
 // How to use:
 // 1. Add a new key to the SEARCH_KEY type union.
@@ -18,5 +18,5 @@ export const localStorageInputMap: Record<
   SEARCH_KEY_LOCAL_STORAGE,
   SearchInputDto[]
 > = {
-  searchStateJobApplication,
+  'searchState-job-application': searchStateJobApplication,
 }

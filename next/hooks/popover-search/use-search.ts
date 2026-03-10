@@ -40,9 +40,7 @@ export type SearchUpdateStateParams =
 
 export const useSearchState = (key: SEARCH_KEY) => {
   // The type casting here is a bit ugly, but is the least convoluted way of adding type safety to the localStorage key and input map.
-  const localStorageKey = `searchState${capitalize(
-    key,
-  )}` as SEARCH_KEY_LOCAL_STORAGE
+  const localStorageKey = `searchState-${key}` as SEARCH_KEY_LOCAL_STORAGE
 
   const inputDtos = useMemo(
     () => localStorageInputMap[localStorageKey],

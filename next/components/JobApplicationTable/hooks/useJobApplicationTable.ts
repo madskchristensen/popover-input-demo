@@ -77,7 +77,7 @@ export const useJobApplicationTable = ({
     manualSorting: true,
     enableRowSelection: true,
     enableHiding: true,
-    // Ensure stable row references (submission.id)
+    // Ensure stable row references, using a unique identifier e.g. entity.id
     getRowId: (row) => row.id,
   })
 

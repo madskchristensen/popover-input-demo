@@ -40,7 +40,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
 
   // TODO: getInput is not used with the newer changes. Maybe remove from implementation entirely?
   const { searchState, updateState, getInput, hasValues, filterEmpty } =
-    useSearchState('jobApplication')
+    useSearchState('job-application')
 
   // TODO: Replace with actual data.
   // TODO: See reference code. Usage of getSelectedResourceId for brand and version
@@ -61,9 +61,9 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
 
   const optionsSourceMap = useMemo(() => {
     return {
-      [OPTIONS_SOURCE_MAP_KEYS.CAR_BRAND]: carBrands ?? [],
+      /*       [OPTIONS_SOURCE_MAP_KEYS.CAR_BRAND]: carBrands ?? [],
       [OPTIONS_SOURCE_MAP_KEYS.CAR_MODEL]: carModelsForBrand ?? [],
-      [OPTIONS_SOURCE_MAP_KEYS.CAR_VERSION]: carVersions ?? [],
+      [OPTIONS_SOURCE_MAP_KEYS.CAR_VERSION]: carVersions ?? [], */
       // [OPTIONS_SOURCE_MAP_KEYS.COUNTRY_CODE]: platformCountryMap, // TODO: Re-add? If keeping countries.
     }
   }, [carBrands, carModelsForBrand, carVersions])
@@ -146,7 +146,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
                   table={table}
                   columns={columns}
                   optionsSourceMap={optionsSourceMap}
-                  searchKey='jobApplication'
+                  searchKey='job-application'
                 />
               )
             })}

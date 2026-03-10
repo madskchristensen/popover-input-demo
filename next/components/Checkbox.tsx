@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react'
-import CheckedIcon from '../public/checkbox-icon.svg'
+// import CheckedIcon from '../public/checkbox-icon.svg' // TODO: Remove? Likely removing entire component
 
 export type CheckboxProps = {
   name: string
@@ -34,7 +34,9 @@ const Checkbox: React.FC<CheckboxProps> = ({
   const handleClick = (e: MouseEvent) => {
     if (disabled) return
     e.stopPropagation()
-    preventDefault && e.preventDefault()
+    if (preventDefault) {
+      e.preventDefault()
+    }
     onChange(!checked)
   }
 
@@ -48,7 +50,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
           className={`cursor-pointer w-6 h-6 rounded-[5px] ${borderStyle} ${errorStyling} ${disabledStyle} flex-shrink-0 `}
           onClick={(e) => disableDescriptionOnClick && handleClick(e)}
         >
-          {checked && <CheckedIcon className='w-full h-full' />}
+          {/*           {checked && <CheckedIcon className='w-full h-full' />} TODO: Outcommented */}
           <input
             type='checkbox'
             name={name}
