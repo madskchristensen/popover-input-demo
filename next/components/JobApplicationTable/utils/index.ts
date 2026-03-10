@@ -1,6 +1,4 @@
-// TODO: Orval + typing
 import { SearchDto } from '@/orval/generated/models'
-import { CarBrand } from '@/types/CarBrand'
 
 // TODO: Currently unused - KEEP?
 
@@ -15,7 +13,8 @@ export const OPTIONS_SOURCE_MAP_KEYS = {
 export const getSelectedResourceId = (
   searchState: SearchDto[],
   columnName: string,
-  data?: Pick<CarBrand, 'id' | 'title'>[],
+  data?: { id: string; title: string }[], // TODO: Was:  Pick<CarBrand, 'id' | 'title'>[]
+  /*   data?: Pick<CarBrand, 'id' | 'title'>[], */
 ) => {
   if (!data) return undefined
 
