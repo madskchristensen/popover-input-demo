@@ -13,17 +13,8 @@ const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
     rules: {
-      // allowObjectTypes
-      '@typescript-eslint/ban-types': [
-        'warn',
-        {
-          extendDefaults: true,
-          types: {
-            '{}': false,
-            object: false,
-          },
-        },
-      ],
+      // Allow object types:
+      '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': [
         'warn',
