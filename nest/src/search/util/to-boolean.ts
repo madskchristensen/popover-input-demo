@@ -1,6 +1,6 @@
 import { TransformFnParams } from 'class-transformer'
 
-// TODO: Better code here.
+// TODO: Can this be improved (or removed - use of class-transformer maybe?)
 
 const stringToBoolean = (value: string | undefined): boolean => {
   if (!value) {
