@@ -11,8 +11,8 @@ import {
   Query,
 } from '@nestjs/common'
 import { JobCategoryService } from './job-category.service'
-import { QueryJobCategoryDto } from './dtos/query'
-import { CreateJobCategoryDto } from './dtos/create'
+import { QueryJobCategoryDto } from './dtos/query.dto'
+import { CreateJobCategoryDto } from './dtos/create.dto'
 
 @Controller('job-category')
 export class JobCategoryController {

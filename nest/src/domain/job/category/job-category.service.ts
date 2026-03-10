@@ -2,8 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { ILike, Repository } from 'typeorm'
 import { JobCategory } from './entities/job-category.entity'
-import { QueryJobCategoryDto } from './dtos/query'
-import { CreateJobCategoryDto } from './dtos/create'
+import { QueryJobCategoryDto } from './dtos/query.dto'
+import { CreateJobCategoryDto } from './dtos/create.dto'
 
 @Injectable()
 export class JobCategoryService {
