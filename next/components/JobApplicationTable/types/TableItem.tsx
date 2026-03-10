@@ -2,8 +2,7 @@ import { JobApplicationStatus } from '@/orval/generated/models'
 
 export type JobApplicationTableItem = {
   id: string
-  firstName: string
-  lastName: string
+  name: string
   email: string
   status: JobApplicationStatus
   country: string // ISO Code

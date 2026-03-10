@@ -9,6 +9,9 @@ export const useSerializeJobApplicationTableData = (
   const formatDate = (isoDate: string) =>
     DateTime.fromISO(isoDate).toFormat('dd//MM/yy')
 
+  const formatName = (firstName: string, lastName: string) =>
+    `${firstName} ${lastName}`
+
   return useMemo(() => {
     return jobApplications.map((application) => {
       const {
@@ -26,8 +29,7 @@ export const useSerializeJobApplicationTableData = (
 
       return {
         id,
-        firstName,
-        lastName,
+        name: formatName(firstName, lastName),
         email,
         status,
         country,

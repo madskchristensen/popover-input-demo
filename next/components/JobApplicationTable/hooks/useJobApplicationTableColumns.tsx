@@ -1,8 +1,6 @@
 import { createColumnHelper } from '@tanstack/react-table'
 import { useMemo } from 'react'
 import Checkbox from '@/components/Checkbox' // TODO: Replace with chakras checkbox
-import PhotoCell from '../Cells/PhotoCell'
-import CarAndOwnerCell from '../Cells/CarAndOwnerCell'
 import NextIcon from '@/public/next.svg' // TODO: Add this to project
 import { JobApplicationTableItem } from '../types/TableItem'
 
@@ -46,12 +44,13 @@ export const useJobApplicationTableColumns = ({
         },
       }),
 
-      columnHelper.accessor('primaryPhotoUrl', {
+      // TODO: Decide - Support photos or not
+      /*       columnHelper.accessor('primaryPhotoUrl', {
         id: 'primaryPhotoUrl',
         header: undefined,
         enableSorting: false,
         cell: ({ getValue }) => <PhotoCell photoUrl={getValue()} />,
-      }),
+      }), */
 
       columnHelper.accessor('country', {
         id: 'country',
@@ -62,23 +61,30 @@ export const useJobApplicationTableColumns = ({
         cell: ({ getValue }) => <p>Country Icon here</p>,
       }),
 
-      columnHelper.accessor('car', {
-        id: 'car',
-        header: 'Car and owner',
+      columnHelper.accessor('name', {
+        id: 'name',
+        header: 'Name',
         enableSorting: true,
-        cell: ({ getValue, row }) => (
-          <CarAndOwnerCell
-            car={getValue()}
-            owner={row.original.owner}
-            isRecurringSeller={row.original.isRecurringSeller}
-            resubmissionCount={row.original.resubmissionCount}
-          />
-        ),
+        cell: (info) => info.getValue(),
       }),
 
-      columnHelper.accessor('carNumber', {
-        id: 'carNumber',
-        header: 'Car number',
+      columnHelper.accessor('email', {
+        id: 'email',
+        header: 'Email',
+        enableSorting: true,
+        cell: (info) => info.getValue(),
+      }),
+
+      columnHelper.accessor('jobRole', {
+        id: 'jobRole',
+        header: 'Role',
+        enableSorting: true,
+        cell: (info) => info.getValue(),
+      }),
+
+      columnHelper.accessor('jobCategory', {
+        id: 'jobCategory',
+        header: 'Category',
         enableSorting: true,
         cell: (info) => info.getValue(),
       }),
@@ -93,10 +99,11 @@ export const useJobApplicationTableColumns = ({
         },
       }),
 
-      columnHelper.accessor('submittedDate', {
-        id: 'submittedDate',
-        header: 'Submitted Date',
+      columnHelper.accessor('createdAt', {
+        id: 'createdAt',
+        header: 'Created',
         enableSorting: true,
+        cell: (info) => info.getValue(),
       }),
 
       columnHelper.display({

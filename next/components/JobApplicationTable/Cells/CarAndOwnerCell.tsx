@@ -2,6 +2,7 @@ import { Tooltip } from '@chakra-ui/react'
 import RecurringSellerIcon from '@/public/recurring-seller.svg'
 import ResubmitIconSvg from '@/public/resubmission-icon.svg'
 
+// TODO: REMOVE THIS COMPONENT? IS IT USED?
 type CarAndOwnerCellProps = {
   car: string
   owner: string
