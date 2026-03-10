@@ -24,4 +24,4 @@ async function exportSwagger() {
   process.exit(0)
 }
 
-exportSwagger()
+void exportSwagger()
