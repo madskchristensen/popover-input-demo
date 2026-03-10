@@ -8,7 +8,7 @@ export default defineConfig({
     output: {
       mode: 'tags-split', // one file per swagger tag (job-applications, job-roles, job-categories)
       target: './generated',
-      schemas: './generated/model',
+      schemas: './generated/models',
       client: 'react-query',
       clean: true,
       prettier: true,
