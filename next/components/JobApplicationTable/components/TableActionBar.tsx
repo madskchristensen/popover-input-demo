@@ -7,10 +7,7 @@ type TableActionBarProps = {
 }
 
 const TableActionBar: FC<TableActionBarProps> = ({ selected }) => {
-  const selectedSubmissionIds = useMemo(
-    () => selected.map(({ id }) => id),
-    [selected],
-  )
+  const selectedIds = useMemo(() => selected.map(({ id }) => id), [selected])
   return (
     <Flex
       borderColor={'gray.200'}
@@ -27,7 +24,7 @@ const TableActionBar: FC<TableActionBarProps> = ({ selected }) => {
       <HStack ml={'auto'}>
         <Button
           variant={'outline'}
-          disabled={!selectedSubmissionIds.length}
+          disabled={!selectedIds.length}
           onClick={() => console.log('did something!')}
         >
           Do something
@@ -36,7 +33,7 @@ const TableActionBar: FC<TableActionBarProps> = ({ selected }) => {
           variant={'outline'}
           bg={'white'}
           maxW={'max-content'}
-          disabled={!selectedSubmissionIds.length}
+          disabled={!selectedIds.length}
           onClick={() => console.log('did something else!')}
         >
           Do something else
