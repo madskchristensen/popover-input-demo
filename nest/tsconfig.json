@@ -18,6 +18,11 @@
     "strictBindCallApply": true,
     "noFallthroughCasesInSwitch": true
   },
+  "watchOptions": {
+    "watchFile": "dynamicPriorityPolling",
+    "watchDirectory": "dynamicPriorityPolling",
+    "fallbackPolling": "dynamicPriority"
+  },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
