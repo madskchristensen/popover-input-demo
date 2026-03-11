@@ -2,7 +2,7 @@ import { useSearchState } from '@/hooks/popover-search/use-search'
 import { Button, Spinner } from '@chakra-ui/react'
 import { FC, useEffect, useMemo, useRef } from 'react'
 import FilterBox from '../inputs/FilterBox'
-import { OPTIONS_SOURCE_MAP_KEYS } from './utils'
+import { getSelectedCategoryId, OPTIONS_SOURCE_MAP_KEYS } from './utils'
 import { useJobApplicationTable } from './hooks/useJobApplicationTable'
 import EmptyState from './components/EmptyState'
 import TableHeaders from './components/TableHeaders'
@@ -13,6 +13,8 @@ import { SortingState, Updater } from '@tanstack/react-table'
 import TableActionBar from './components/TableActionBar'
 import useIntersectionObserver from '@/hooks/intersection'
 import { useJobApplicationControllerFindAllInfinite } from '@/orval/generated/api/job-application/job-application'
+import { useJobCategoryControllerFindAll } from '@/orval/generated/api/job-category/job-category'
+import { useJobRoleControllerFindAll } from '@/orval/generated/api/job-role/job-role'
 
 type JobApplicationTableProps = {}
 
@@ -41,31 +43,25 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
   const { searchState, updateState, getInput, hasValues, filterEmpty } =
     useSearchState('job-application')
 
-  // TODO: Replace with actual data.
-  // TODO: See reference code. Usage of getSelectedResourceId for brand and version
-  const { data: carBrands } = { data: ['carBrand1'] } // useGetCarBrands()
-  const { data: carModelsForBrand } = { data: ['carModel1'] } // useGetCarModelsForBrand(selectedCarBrandId)
-  /*  
-  useGetModelVersions(
-    selectedCarModelId ?? '',
-    {},
-    {
-      query: {
-        enabled: Boolean(selectedCarModelId),
-      },
-    },
+  const { data: jobCategories } = useJobCategoryControllerFindAll()
+
+  const selectedCategoryId = useMemo(
+    () => getSelectedCategoryId(searchState, jobCategories),
+    [searchState, jobCategories],
   )
-   */
-  const { data: carVersions } = { data: ['carVersion1'] }
+
+  const { data: jobRoles } = useJobRoleControllerFindAll(
+    { jobCategoryId: selectedCategoryId },
+    { query: { enabled: !!selectedCategoryId } },
+  )
 
   const optionsSourceMap = useMemo(() => {
     return {
-      /*       [OPTIONS_SOURCE_MAP_KEYS.CAR_BRAND]: carBrands ?? [],
-      [OPTIONS_SOURCE_MAP_KEYS.CAR_MODEL]: carModelsForBrand ?? [],
-      [OPTIONS_SOURCE_MAP_KEYS.CAR_VERSION]: carVersions ?? [], */
-      // [OPTIONS_SOURCE_MAP_KEYS.COUNTRY_CODE]: platformCountryMap, // TODO: Re-add? If keeping countries.
+      [OPTIONS_SOURCE_MAP_KEYS.JOB_CATEGORY]: jobCategories ?? [],
+      [OPTIONS_SOURCE_MAP_KEYS.JOB_ROLE]: jobRoles ?? [],
+      [OPTIONS_SOURCE_MAP_KEYS.JOB_APPLICATION_STATUS]: [],
     }
-  }, [carBrands, carModelsForBrand, carVersions])
+  }, [jobCategories, jobRoles])
 
   // We save sorting to local storage so that it persists when navigating back to the page
   const setAndSaveSorting = (updater: Updater<SortingState>) => {
