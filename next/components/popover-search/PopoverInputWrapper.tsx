@@ -87,11 +87,14 @@ const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
                         <IconButton
                           variant='link'
                           aria-label={`Clear ${label}`}
-                          icon={<CloseIcon width='10px' height='10px' />}
-                          color='white'
-                          padding={1.75}
-                          margin={-1.75}
-                          _hover={{ color: 'red.400' }}
+                          icon={
+                            <CloseIcon
+                              width='8px'
+                              height='8px'
+                              color='red'
+                              _hover={{ color: 'red.400' }}
+                            />
+                          }
                           cursor={'pointer'}
                           minW={'auto'}
                           display={'inline-flex'}
