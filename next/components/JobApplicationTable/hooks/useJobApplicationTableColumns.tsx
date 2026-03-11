@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 /* import Checkbox from '@/components/Checkbox' */
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { JobApplicationTableItem } from '../types/TableItem'
-import { IconButton } from '@chakra-ui/react'
+import { Box, IconButton } from '@chakra-ui/react'
 import { Checkbox } from '@chakra-ui/react'
 
 type UseJobApplicationTableColumnsProps = {
@@ -26,7 +26,6 @@ export const useJobApplicationTableColumns = ({
               name='all'
               isChecked={table.getIsAllPageRowsSelected()}
               onChange={() => table.toggleAllPageRowsSelected()}
-              /*               preventDefault={true} */ // TODO: Might need a solution. preventDefault isn't a prop, but event bubbling might trigger navigation to item in table.
             />
           )
         },
@@ -34,14 +33,16 @@ export const useJobApplicationTableColumns = ({
           const { id } = row.original
 
           return (
-            <div className={`${data.length === 1 ? 'pb-2' : ''}`}>
+            <Box
+              onClick={(e) => e.stopPropagation()}
+              pb={data.length === 1 ? 2 : 0}
+            >
               <Checkbox
                 name={id}
                 isChecked={row.getIsSelected()}
                 onChange={() => row.toggleSelected()}
-                /*              preventDefault={true} */
               />
-            </div>
+            </Box>
           )
         },
       }),
