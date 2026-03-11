@@ -7,6 +7,7 @@ import {
   SEARCH_KEY,
   SEARCH_KEY_LOCAL_STORAGE,
 } from './inputs/storage-maps'
+import { useSearchReconciliation } from './use-search-reconciliation'
 
 export type TableIdentifier = Pick<SearchDto, 'table'>
 export type ColumnIdentifier = Pick<SearchColumnDto, 'name'>
@@ -30,11 +31,7 @@ export type SearchUpdateStateParams =
   | SearchResetAllParams
   | SearchResetSingleParams
 
-/* TODO:
-  - Integrate with redux
-  - Add fix for corrupt search state: If inputs are changed, the search state can be out of sync with localStorage.
-    -> Think Redux can be configured to account for this using a specific reconciliation strategy.
-  */
+// TODO: Integrate with redux. Could use a reconciliation strategy, which would likely make the useSearchReconciliation redundant.
 
 export const useSearchState = (key: SEARCH_KEY) => {
   // The type casting here is a bit ugly, but is the least convoluted way of adding type safety to the localStorage key and input map.
@@ -74,6 +71,8 @@ export const useSearchState = (key: SEARCH_KEY) => {
     localStorageKey,
     initialState,
   )
+
+  useSearchReconciliation(searchState, initialState, setSearchState)
 
   // Create a lookup map for the inputs to easily find the input by table and name
   const inputLookupMap = useMemo(() => {
