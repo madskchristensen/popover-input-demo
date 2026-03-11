@@ -2,15 +2,18 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { useMemo } from 'react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { JobApplicationTableItem } from '../types/TableItem'
-import { Box, IconButton } from '@chakra-ui/react'
+import { Badge, Box, IconButton } from '@chakra-ui/react'
 import { Checkbox } from '@chakra-ui/react'
 import ReactCountryFlag from 'react-country-flag'
+import { JobApplicationStatus } from '@/orval/generated/models'
 
 type UseJobApplicationTableColumnsProps = {
   data: JobApplicationTableItem[]
 }
 
 const columnHelper = createColumnHelper<JobApplicationTableItem>()
+
+const formatStatus = (status: JobApplicationStatus) => status.replace(/_/g, ' ')
 
 export const useJobApplicationTableColumns = ({
   data,
@@ -95,7 +98,19 @@ export const useJobApplicationTableColumns = ({
         enableSorting: false,
         cell: ({ getValue }) => {
           const val = getValue()
-          return <div className='max-w-[150px] break-words'>{val}</div>
+          const colorScheme: Record<string, string> = {
+            NEW: 'blue',
+            PENDING_REVIEW: 'yellow',
+            IN_REVIEW: 'orange',
+            REVIEWED: 'purple',
+            SHORTLISTED: 'green',
+            REJECTED: 'red',
+          }
+          return (
+            <Badge variant='outline' colorScheme={colorScheme[val] ?? 'gray'}>
+              {formatStatus(val)}
+            </Badge>
+          )
         },
       }),
 
