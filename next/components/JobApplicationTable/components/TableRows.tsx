@@ -17,7 +17,7 @@ const TableRows: React.FC<TableRowsProps> = ({ rows, page }) => {
           <Link
             key={row.id}
             className='contents select-none cursor-pointer items-center justify-center'
-            href={`buying/${rowId}?page=${page}`}
+            href={`#`} // TODO: Details page: application/${rowId}
           >
             <tr
               className={
