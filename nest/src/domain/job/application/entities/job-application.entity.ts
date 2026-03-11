@@ -29,7 +29,7 @@ export class JobApplication extends AbstractCreatedEntity {
   jobRoleId: string
 
   @ManyToOne(() => JobRole, (role) => role.applications, {
-    onDelete: 'RESTRICT',
+    onDelete: 'RESTRICT', // TODO: Keep or change?
     eager: true,
   })
   @JoinColumn({ name: 'jobRoleId' })
