@@ -57,6 +57,7 @@ export class JobApplicationService {
               const paramName = `search_value_${table}_${name}` // Makes sure the parameter name is unique
 
               // Cast the value from the searched column to text to avoid issues when dealing with ENUMS, numbers etc.
+              // Use unaccent to remove diacritics (normalize search input)
               qb.andWhere(
                 `unaccent(CAST("${table}"."${name}" AS TEXT)) ${operator} unaccent(:${paramName})`,
                 {
