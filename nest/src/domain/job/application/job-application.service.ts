@@ -17,7 +17,7 @@ export class JobApplicationService {
     private readonly jobRoleService: JobRoleService,
   ) {}
 
-  async findAll(
+  async findPaginated(
     query: QueryJobApplicationDto,
   ): Promise<[JobApplication[], number]> {
     const sortColumn: string | undefined = query.sorting?.split(':')?.[0]
