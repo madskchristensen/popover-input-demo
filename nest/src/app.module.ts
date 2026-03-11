@@ -19,7 +19,7 @@ import { SeederModule } from './seeder/seeder.module'
       password: process.env.DB_PASSWORD ?? 'postgres',
       database: process.env.DB_NAME ?? 'popover_presentation_db',
       entities: [JobCategory, JobRole, JobApplication],
-      synchronize: true, // disable in production — use migrations
+      synchronize: true,
     }),
     SeederModule,
     JobCategoryModule,
