@@ -1,5 +1,6 @@
-import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { Module, OnModuleInit } from '@nestjs/common'
+import { InjectDataSource, TypeOrmModule } from '@nestjs/typeorm'
+import { DataSource } from 'typeorm'
 import { JobRole } from './domain/job/role/entities/job-role.entity'
 import { JobRoleModule } from './domain/job/role/job-role.module'
 import { JobApplication } from './domain/job/application/entities/job-application.entity'
@@ -26,4 +27,10 @@ import { SeederModule } from './seeder/seeder.module'
     JobApplicationModule,
   ],
 })
-export class AppModule {}
+export class AppModule implements OnModuleInit {
+  constructor(@InjectDataSource() private readonly dataSource: DataSource) {}
+
+  async onModuleInit() {
+    await this.dataSource.query('CREATE EXTENSION IF NOT EXISTS unaccent')
+  }
+}
