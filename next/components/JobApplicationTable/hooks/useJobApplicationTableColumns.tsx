@@ -1,9 +1,10 @@
 import { createColumnHelper } from '@tanstack/react-table'
 import { useMemo } from 'react'
-import Checkbox from '@/components/Checkbox' // TODO: Replace with chakras checkbox
+/* import Checkbox from '@/components/Checkbox' */
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { JobApplicationTableItem } from '../types/TableItem'
 import { IconButton } from '@chakra-ui/react'
+import { Checkbox } from '@chakra-ui/react'
 
 type UseJobApplicationTableColumnsProps = {
   data: JobApplicationTableItem[]
@@ -23,9 +24,9 @@ export const useJobApplicationTableColumns = ({
           return (
             <Checkbox
               name='all'
-              checked={table.getIsAllPageRowsSelected()}
-              onChange={table.toggleAllPageRowsSelected}
-              preventDefault={true}
+              isChecked={table.getIsAllPageRowsSelected()}
+              onChange={() => table.toggleAllPageRowsSelected()}
+              /*               preventDefault={true} */ // TODO: Might need a solution. preventDefault isn't a prop, but event bubbling might trigger navigation to item in table.
             />
           )
         },
@@ -36,22 +37,14 @@ export const useJobApplicationTableColumns = ({
             <div className={`${data.length === 1 ? 'pb-2' : ''}`}>
               <Checkbox
                 name={id}
-                checked={row.getIsSelected()}
+                isChecked={row.getIsSelected()}
                 onChange={() => row.toggleSelected()}
-                preventDefault={true}
+                /*              preventDefault={true} */
               />
             </div>
           )
         },
       }),
-
-      // TODO: Decide - Support photos or not
-      /*       columnHelper.accessor('primaryPhotoUrl', {
-        id: 'primaryPhotoUrl',
-        header: undefined,
-        enableSorting: false,
-        cell: ({ getValue }) => <PhotoCell photoUrl={getValue()} />,
-      }), */
 
       columnHelper.accessor('country', {
         id: 'country',
