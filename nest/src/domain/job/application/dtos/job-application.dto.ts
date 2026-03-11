@@ -1,4 +1,4 @@
-import { plainToInstance, Transform, Type } from 'class-transformer'
+import { Transform, Type } from 'class-transformer'
 import {
   ArrayMinSize,
   IsArray,
@@ -87,14 +87,10 @@ export class QueryJobApplicationDto extends PageOptionsDto {
   country?: string
 
   @IsOptional()
-  @Transform(({ value }) => {
-    console.log('transform', value)
-    const parsed = typeof value === 'string' ? JSON.parse(value) : value
-    return Array.isArray(parsed) ? plainToInstance(SearchDto, parsed) : parsed
-  })
   @IsArray()
   @ArrayMinSize(1)
   @ValidateNested({ each: true })
+  @Type(() => SearchDto)
   search?: SearchDto[] // The OpenAPI schema for this property is generated using the ApiSearchQuery decorator
 
   @IsOptional()
