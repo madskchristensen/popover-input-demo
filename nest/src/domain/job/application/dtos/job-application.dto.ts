@@ -88,6 +88,7 @@ export class QueryJobApplicationDto extends PageOptionsDto {
 
   @IsOptional()
   @Transform(({ value }) => {
+    console.log('transform', value)
     const parsed = typeof value === 'string' ? JSON.parse(value) : value
     return Array.isArray(parsed) ? plainToInstance(SearchDto, parsed) : parsed
   })

@@ -41,7 +41,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
 
   // TODO: getInput is not used with the newer changes. Maybe remove from implementation entirely?
   const { searchState, updateState, getInput, hasValues, filterEmpty } =
-    useSearchState('job-application')
+    useSearchState('jobApplication')
 
   const { data: jobCategories } = useJobCategoryControllerFindAll()
 
@@ -143,7 +143,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
                   table={table}
                   columns={columns}
                   optionsSourceMap={optionsSourceMap}
-                  searchKey='job-application'
+                  searchKey='jobApplication'
                 />
               )
             })}

@@ -113,7 +113,7 @@ const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
                       </Box>
                     </>
                   ) : (
-                    <span>label</span>
+                    <span>{label}</span>
                   )}
                 </Button>
               </Flex>

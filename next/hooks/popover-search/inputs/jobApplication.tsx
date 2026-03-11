@@ -7,7 +7,7 @@ import {
 
 export const searchStateJobApplication: SearchInputDto[] = [
   {
-    table: 'job_application',
+    table: 'jobApplication',
     inputs: [
       {
         name: 'firstName',
@@ -32,7 +32,7 @@ export const searchStateJobApplication: SearchInputDto[] = [
     ],
   },
   {
-    table: 'job_category',
+    table: 'jobCategory',
     inputs: [
       {
         name: 'name',
@@ -47,7 +47,7 @@ export const searchStateJobApplication: SearchInputDto[] = [
     ],
   },
   {
-    table: 'job_role',
+    table: 'jobRole',
     inputs: [
       {
         name: 'title',
@@ -59,7 +59,7 @@ export const searchStateJobApplication: SearchInputDto[] = [
             value: role.title,
           })),
         isDependantOn: {
-          table: 'job_category',
+          table: 'jobCategory',
           column: 'name',
         },
       },
