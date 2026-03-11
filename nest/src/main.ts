@@ -5,6 +5,7 @@ import { AppModule } from './app.module'
 import { NestExpressApplication } from '@nestjs/platform-express'
 
 async function bootstrap() {
+  // Nest uses Express by default. We type the Generic to fit this, and allow support for app.set to configure the query parser (further down).
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }))
