@@ -7,6 +7,7 @@ export class JobCategory extends AbstractBaseEntity {
   @Column()
   name: string
 
+  // TODO: Use PrimaryColumn, with ENUM.
   @Column({ unique: true })
   code: string
 
