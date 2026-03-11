@@ -1,4 +1,4 @@
-import { Transform, Type } from 'class-transformer'
+import { Type } from 'class-transformer'
 import {
   ArrayMinSize,
   IsArray,
@@ -9,7 +9,6 @@ import {
   IsOptional,
   IsString,
   IsUUID,
-  Length,
   ValidateNested,
 } from 'class-validator'
 import { ApplicationStatus } from 'src/domain/job/enums/application-status'

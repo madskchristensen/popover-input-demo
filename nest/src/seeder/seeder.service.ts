@@ -90,7 +90,9 @@ export class SeederService {
     const applicationCount = await this.applicationRepo.count()
 
     if (applicationCount > 0) {
-      this.logger.log(`Skipping applications — ${applicationCount} already exist.`)
+      this.logger.log(
+        `Skipping applications — ${applicationCount} already exist.`,
+      )
       return
     }
 
