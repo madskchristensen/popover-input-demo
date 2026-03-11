@@ -20,11 +20,8 @@ const TableActionBar: FC<TableActionBarProps> = ({ selected }) => {
       alignItems={'center'}
     >
       <HStack justifyItems={'center'}>
-        <Text>
-          <Text display={'inline'} color={'black'} fontWeight={'bold'}>
-            {selected.length}{' '}
-          </Text>
-          selected
+        <Text display={'inline'} color={'black'} fontWeight={'bold'}>
+          {selected.length} selected
         </Text>
       </HStack>
       <HStack ml={'auto'}>
