@@ -94,7 +94,6 @@ const PopoverDropdown: React.FC<PopoverDropdownProps> = ({
         openMenuOnFocus={true}
         tabSelectsValue={false}
         initialFocusRef={initialFocusRef}
-        /*         className='w-full' */
         name={name}
         options={options}
         placeholder={label}

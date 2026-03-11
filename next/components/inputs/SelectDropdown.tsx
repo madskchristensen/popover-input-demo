@@ -43,6 +43,7 @@ const SelectDropdown: FC<SelectDropdownProps> = ({
 }) => {
   const border = error ? '!border-red' : '!border-gray'
 
+  // TODO: Remove this? Think it's legacy (along with the if value clause)
   let selectedOption = options.find((option) => option.value === value) ?? null
 
   // If the selected value is not in the possible options (deprecated option),
@@ -72,6 +73,7 @@ const SelectDropdown: FC<SelectDropdownProps> = ({
         option: () => `!text-sm hover:cursor-pointer`,
         placeholder: () => `!text-gray`,
         indicatorSeparator: () => 'hidden',
+        container: () => 'w-full',
       }}
       isDisabled={disabled ?? false}
     />
