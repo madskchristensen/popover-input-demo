@@ -49,15 +49,14 @@ export class SeederService {
   // ─── Roles ─────────────────────────────────────────────────────────────────
 
   private async seedRoles(): Promise<void> {
-    const categories = await this.categoryRepo.find()
+    const roleCount = await this.roleRepo.count()
 
-    const seededItems = categories.length
-
-    if (seededItems > 0) {
-      this.logger.log(`Skipping roles — ${seededItems} already exist.`)
+    if (roleCount > 0) {
+      this.logger.log(`Skipping roles — ${roleCount} already exist.`)
       return
     }
 
+    const categories = await this.categoryRepo.find()
     const byCode = Object.fromEntries(categories.map((c) => [c.code, c]))
 
     const roles = this.roleRepo.create([
@@ -88,15 +87,14 @@ export class SeederService {
   // ─── Applications ──────────────────────────────────────────────────────────
 
   private async seedApplications(): Promise<void> {
-    const roles = await this.roleRepo.find()
+    const applicationCount = await this.applicationRepo.count()
 
-    const seededItems = roles.length
-
-    if (seededItems > 0) {
-      this.logger.log(`Skipping applications — ${seededItems} already exist.`)
+    if (applicationCount > 0) {
+      this.logger.log(`Skipping applications — ${applicationCount} already exist.`)
       return
     }
 
+    const roles = await this.roleRepo.find()
     const byTitle = Object.fromEntries(roles.map((r) => [r.title, r]))
 
     const applications = this.applicationRepo.create([

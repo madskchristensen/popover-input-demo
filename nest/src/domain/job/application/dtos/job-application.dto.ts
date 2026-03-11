@@ -92,4 +92,8 @@ export class QueryJobApplicationDto extends PageOptionsDto {
   @ValidateNested({ each: true })
   @Type(() => SearchDto)
   search?: SearchDto[] // The OpenAPI schema for this property is generated using the ApiSearchQuery decorator
+
+  @IsOptional()
+  @IsString()
+  sorting?: string
 }

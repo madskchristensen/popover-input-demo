@@ -28,10 +28,11 @@ export class JobApplicationController {
   @Get()
   @ApiSearchQuery()
   @ApiPaginatedResponse(JobApplication)
-  async findAll(@Query() query: QueryJobApplicationDto) {
-    const [found, total] = await this.service.findAll(query)
+  async findAll(@Query() search: QueryJobApplicationDto) {
+    console.log(search)
+    const [found, total] = await this.service.findAll(search)
 
-    return pageDtoFrom(found, query, total)
+    return pageDtoFrom(found, search, total)
   }
 
   @Get(':id')

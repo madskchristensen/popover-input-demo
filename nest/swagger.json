@@ -373,6 +373,14 @@
             }
           },
           {
+            "name": "sorting",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "required": true,
             "in": "query",
@@ -707,58 +715,6 @@
           }
         }
       },
-      "SearchPayload": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string"
-          },
-          "exact": {
-            "type": "boolean"
-          },
-          "allowMultiple": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "value",
-          "exact"
-        ]
-      },
-      "SearchColumnDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "payload": {
-            "$ref": "#/components/schemas/SearchPayload"
-          }
-        },
-        "required": [
-          "name",
-          "payload"
-        ]
-      },
-      "SearchDto": {
-        "type": "object",
-        "properties": {
-          "table": {
-            "type": "string"
-          },
-          "columns": {
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SearchColumnDto"
-            }
-          }
-        },
-        "required": [
-          "table",
-          "columns"
-        ]
-      },
       "PageDtoPagination": {
         "type": "object",
         "properties": {
@@ -816,6 +772,58 @@
         "required": [
           "data",
           "pagination"
+        ]
+      },
+      "SearchPayload": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "exact": {
+            "type": "boolean"
+          },
+          "allowMultiple": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "value",
+          "exact"
+        ]
+      },
+      "SearchColumnDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/SearchPayload"
+          }
+        },
+        "required": [
+          "name",
+          "payload"
+        ]
+      },
+      "SearchDto": {
+        "type": "object",
+        "properties": {
+          "table": {
+            "type": "string"
+          },
+          "columns": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchColumnDto"
+            }
+          }
+        },
+        "required": [
+          "table",
+          "columns"
         ]
       },
       "CreateJobApplicationDto": {

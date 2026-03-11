@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { Brackets, Repository } from 'typeorm'
 import { JobApplication } from './entities/job-application.entity'
 import {
   CreateJobApplicationDto,
@@ -20,17 +20,65 @@ export class JobApplicationService {
   async findAll(
     query: QueryJobApplicationDto,
   ): Promise<[JobApplication[], number]> {
+    const sortColumn: string | undefined = query.sorting?.split(':')?.[0]
+    const sortDirection: 'DESC' | 'ASC' =
+      query.sorting?.split(':')?.[1] === 'ASC' ? 'ASC' : 'DESC'
+
+    const { limit, skip } = query
+
     const qb = this.repo
-      .createQueryBuilder('application')
-      .leftJoinAndSelect('application.jobRole', 'jobRole')
+      .createQueryBuilder('JobApplication')
+      .skip(skip)
+      .limit(limit)
+      .leftJoinAndSelect('JobApplication.jobRole', 'jobRole')
       .leftJoinAndSelect('jobRole.jobCategory', 'jobCategory')
 
-    if (query.status) {
-      qb.andWhere('application.status = :status', { status: query.status })
+    // TODO: Implement sorting
+    /*     switch (sortColumn) {
+    } */
+
+    const search = query.search
+    const shouldSearch = search && search.length > 0
+
+    if (shouldSearch) {
+      // Manually join the tables that COULD be searched in.
+      // This could be done programatically, if the search feature is expanded in the future, and to optimize the query a bit by avoiding unnecessary joins.
+      qb.leftJoinAndSelect('contractInfo.address', 'address')
+
+      qb.andWhere(
+        new Brackets((qb) => {
+          search.forEach(({ columns, table }) => {
+            columns.forEach(({ payload, name }) => {
+              const { exact, value } = payload
+
+              const operator = exact ? '=' : 'ILIKE'
+
+              const normalizedValue = value.trim()
+              const searchValue = exact
+                ? normalizedValue
+                : `%${normalizedValue}%`
+
+              const paramName = `search_value_${table}_${name}` // Makes sure the parameter name is unique
+
+              // Cast the value from the searched column to text to avoid issues when dealing with ENUMS, numbers etc.
+              qb.andWhere(
+                `unaccent(CAST(${table}.${name} AS TEXT)) ${operator} unaccent(:${paramName})`,
+                {
+                  [paramName]: searchValue,
+                },
+              )
+            })
+          })
+        }),
+      )
+    }
+
+    /*     if (query.status) {
+      qb.andWhere('JobApplication.status = :status', { status: query.status })
     }
 
     if (query.jobRoleId) {
-      qb.andWhere('application.jobRoleId = :jobRoleId', {
+      qb.andWhere('JobApplication.jobRoleId = :jobRoleId', {
         jobRoleId: query.jobRoleId,
       })
     }
@@ -43,19 +91,21 @@ export class JobApplicationService {
     }
 
     if (query.country) {
-      qb.andWhere('application.country = :country', { country: query.country })
-    }
+      qb.andWhere('JobApplication.country = :country', {
+        country: query.country,
+      })
+    } */
 
-    if (query.search) {
+    /*     if (query.search) {
       // TODO: error  'query.search' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string (line 54)
       // TODO: Invalid type "SearchDto[]" of template literal expression (line 53)
       qb.andWhere(
-        '(application.firstName ILIKE :search OR application.lastName ILIKE :search OR application.email ILIKE :search)',
+        '(JobApplication.firstName ILIKE :search OR JobApplication.lastName ILIKE :search OR JobApplication.email ILIKE :search)',
         { search: `%${query.search}%` },
       )
-    }
+    } */
 
-    return qb.orderBy('application.createdAt', 'DESC').getManyAndCount()
+    return qb.orderBy('JobApplication.createdAt', 'DESC').getManyAndCount()
   }
 
   async findOne(id: string): Promise<JobApplication> {

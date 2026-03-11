@@ -1,7 +1,5 @@
 import { useCallback, useMemo } from 'react'
-
 import { SearchColumnDto, SearchDto, SearchPayload } from './models.types'
-import { capitalize } from 'lodash'
 import { useLocalStorage } from 'usehooks-ts'
 import { SearchInput } from './inputs'
 import {
