@@ -65,7 +65,7 @@ const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
             <Box maxW={'35%'}>
               <Flex align={'center'} justify={'start'}>
                 <Button
-                  variant={value ? 'primary' : 'secondary'}
+                  variant={value ? 'solid' : 'outline'}
                   isDisabled={isDisabled}
                   height={'2.5em'}
                   fontSize={'small'}
