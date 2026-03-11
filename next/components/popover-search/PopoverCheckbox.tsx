@@ -1,6 +1,8 @@
-
-import { SearchUpdateStateParams, TableIdentifier } from '@/hooks/popover-search/use-search'
-import { Checkbox as ChakraCheckbox } from '@chakra-ui/react'
+import {
+  SearchUpdateStateParams,
+  TableIdentifier,
+} from '@/hooks/popover-search/use-search'
+import { Checkbox } from '@chakra-ui/react'
 import { memo } from 'react'
 
 type PopoverCheckboxProps = TableIdentifier & {
@@ -18,8 +20,8 @@ const PopoverCheckbox: React.FC<PopoverCheckboxProps> = ({
   table,
 }) => {
   return (
-    <ChakraCheckbox
-      size='x-small'
+    <Checkbox
+      size='sm'
       isChecked={exact}
       onChange={(e) =>
         updateState({
@@ -34,7 +36,7 @@ const PopoverCheckbox: React.FC<PopoverCheckboxProps> = ({
       }
     >
       Exact matches only
-    </ChakraCheckbox>
+    </Checkbox>
   )
 }
 
