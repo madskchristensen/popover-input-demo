@@ -73,7 +73,7 @@ const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
                   paddingX={4}
                   display={'inline-flex'}
                 >
-                  {value && (
+                  {value ? (
                     <>
                       <span className='mr-1'>{label}:</span>
                       <span
@@ -112,9 +112,9 @@ const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
                         />
                       </Box>
                     </>
+                  ) : (
+                    <span>label</span>
                   )}
-
-                  {!value && <span>{label}</span>}
                 </Button>
               </Flex>
             </Box>
