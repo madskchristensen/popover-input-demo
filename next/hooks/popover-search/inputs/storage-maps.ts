@@ -13,7 +13,7 @@ export type SEARCH_KEY_LOCAL_STORAGE =
 // How to use:
 // 1. Add a new key to the SEARCH_KEY type union.
 // 2. Add a new entry to the localStorageInputMap object with the key and the inputs for the new search.
-// 3. Call the hook, pass the added key as argument, and use the returned values. See SubmissionsTable.tsx for an example.
+// 3. Call the hook, pass the added key as argument, and use the returned values. See JobApplicationTable.tsx for an example.
 export const localStorageInputMap: Record<
   SEARCH_KEY_LOCAL_STORAGE,
   SearchInputDto[]
