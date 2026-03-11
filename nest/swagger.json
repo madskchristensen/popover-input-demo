@@ -317,50 +317,6 @@
         "operationId": "JobApplicationController_findAll",
         "parameters": [
           {
-            "name": "status",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "NEW",
-                "PENDING_REVIEW",
-                "IN_REVIEW",
-                "REVIEWED",
-                "SHORTLISTED",
-                "REJECTED"
-              ]
-            }
-          },
-          {
-            "name": "jobRoleId",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "format": "uuid",
-              "type": "string"
-            }
-          },
-          {
-            "name": "jobCategoryId",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "format": "uuid",
-              "type": "string"
-            }
-          },
-          {
-            "name": "country",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minLength": 2,
-              "maxLength": 2,
-              "type": "string"
-            }
-          },
-          {
             "name": "search",
             "required": false,
             "in": "query",

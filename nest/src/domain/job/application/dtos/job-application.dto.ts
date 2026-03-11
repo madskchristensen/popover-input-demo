@@ -67,25 +67,7 @@ export class UpdateJobApplicationDto {
   jobRoleId?: string
 }
 
-// TODO: Check jobRoleId, jobCategoryId, country. Might be redundant due to search
 export class QueryJobApplicationDto extends PageOptionsDto {
-  @IsOptional()
-  @IsEnum(ApplicationStatus)
-  status?: ApplicationStatus
-
-  @IsOptional()
-  @IsUUID()
-  jobRoleId?: string
-
-  @IsOptional()
-  @IsUUID()
-  jobCategoryId?: string // Resolved by joining through jobRole
-
-  @IsOptional()
-  @IsString()
-  @Length(2, 2)
-  country?: string
-
   @IsOptional()
   @IsArray()
   @ArrayMinSize(1)
