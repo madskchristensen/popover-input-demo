@@ -83,6 +83,7 @@ const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
                         {value}
                       </span>
 
+                      {/* TODO: Close icon can be hard to hit. Maybe margin/padding hack or another solution to make the clickable box bigger? */}
                       <Box ml={2} pb={0.185}>
                         <IconButton
                           variant='link'

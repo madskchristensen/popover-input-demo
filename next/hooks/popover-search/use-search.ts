@@ -32,7 +32,6 @@ export type SearchUpdateStateParams =
   | SearchResetSingleParams
 
 // TODO: Integrate with redux. Could use a reconciliation strategy, which would likely make the useSearchReconciliation redundant.
-
 export const useSearchState = (key: SEARCH_KEY) => {
   // The type casting here is a bit ugly, but is the least convoluted way of adding type safety to the localStorage key and input map.
   const localStorageKey =

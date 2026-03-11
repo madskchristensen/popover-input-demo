@@ -19,3 +19,5 @@ export const getSelectedCategoryId = (
 
   return jobCategories.find((c) => c.name === selectedCategoryName)?.id
 }
+
+export const deUnderScoreString = (val: string) => val.replace(/_/g, ' ')

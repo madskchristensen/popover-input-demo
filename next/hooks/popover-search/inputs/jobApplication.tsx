@@ -1,3 +1,4 @@
+import { deUnderScoreString } from '@/components/JobApplicationTable/utils'
 import { SearchInputDto, SelectOption } from '.'
 import {
   JobApplicationStatus,
@@ -5,13 +6,19 @@ import {
   JobRole,
 } from '@/orval/generated/models'
 
+// TODO: Consider combining firstName + lastName
 export const searchStateJobApplication: SearchInputDto[] = [
   {
     table: 'jobApplication',
     inputs: [
       {
         name: 'firstName',
-        label: 'Name',
+        label: 'First Name',
+        type: 'text',
+      },
+      {
+        name: 'lastName',
+        label: 'Last Name',
         type: 'text',
       },
       {
@@ -25,7 +32,7 @@ export const searchStateJobApplication: SearchInputDto[] = [
         type: 'dropdown',
         transformer: (): SelectOption[] =>
           Object.values(JobApplicationStatus).map((status) => ({
-            label: status.replace(/_/g, ' '),
+            label: deUnderScoreString(status),
             value: status,
           })),
       },

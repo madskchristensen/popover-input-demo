@@ -5,15 +5,13 @@ import { JobApplicationTableItem } from '../types/TableItem'
 import { Badge, Box, IconButton } from '@chakra-ui/react'
 import { Checkbox } from '@chakra-ui/react'
 import ReactCountryFlag from 'react-country-flag'
-import { JobApplicationStatus } from '@/orval/generated/models'
+import { deUnderScoreString } from '../utils'
 
 type UseJobApplicationTableColumnsProps = {
   data: JobApplicationTableItem[]
 }
 
 const columnHelper = createColumnHelper<JobApplicationTableItem>()
-
-const formatStatus = (status: JobApplicationStatus) => status.replace(/_/g, ' ')
 
 export const useJobApplicationTableColumns = ({
   data,
@@ -64,9 +62,16 @@ export const useJobApplicationTableColumns = ({
         ),
       }),
 
-      columnHelper.accessor('name', {
-        id: 'name',
-        header: 'Name',
+      columnHelper.accessor('firstName', {
+        id: 'firstName',
+        header: 'Fist Name',
+        enableSorting: true,
+        cell: (info) => info.getValue(),
+      }),
+
+      columnHelper.accessor('lastName', {
+        id: 'lastName',
+        header: 'Last Name',
         enableSorting: true,
         cell: (info) => info.getValue(),
       }),
@@ -108,7 +113,7 @@ export const useJobApplicationTableColumns = ({
           }
           return (
             <Badge variant='outline' colorScheme={colorScheme[val] ?? 'gray'}>
-              {formatStatus(val)}
+              {deUnderScoreString(val)}
             </Badge>
           )
         },
