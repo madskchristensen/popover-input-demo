@@ -1,10 +1,10 @@
 import { createColumnHelper } from '@tanstack/react-table'
 import { useMemo } from 'react'
-/* import Checkbox from '@/components/Checkbox' */
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { JobApplicationTableItem } from '../types/TableItem'
 import { Box, IconButton } from '@chakra-ui/react'
 import { Checkbox } from '@chakra-ui/react'
+import ReactCountryFlag from 'react-country-flag'
 
 type UseJobApplicationTableColumnsProps = {
   data: JobApplicationTableItem[]
@@ -51,9 +51,14 @@ export const useJobApplicationTableColumns = ({
         id: 'country',
         header: undefined,
         enableSorting: false,
-        // TODO: Implement Country and use here
-        /* <CountryIcon country={getValue()} className='w-6' /> */
-        cell: ({ getValue }) => <p>Country Icon here</p>,
+        cell: ({ row }) => (
+          <ReactCountryFlag
+            countryCode={row.original.country}
+            svg
+            style={{ width: '1.5rem', height: '1.5rem' }}
+            title={row.original.country}
+          />
+        ),
       }),
 
       columnHelper.accessor('name', {
