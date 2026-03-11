@@ -2,11 +2,18 @@ import { NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { AppModule } from './app.module'
+import { NestExpressApplication } from '@nestjs/platform-express'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }))
+
+  // https://docs.nestjs.com/controllers#query-parameters
+  // Configure the query parser, to allow for rich query objects, such as nested query parameters.
+  // Without this, rich query objects will silently fail and cause undefined query params.
+  // e.g. ?filter[where][name]=John&filter[where][age]=30
+  app.set('query parser', 'extended')
 
   app.enableCors({
     origin: process.env.NEXT_URL ?? 'http://localhost:3000',
