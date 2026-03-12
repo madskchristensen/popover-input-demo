@@ -5,7 +5,7 @@ services:
     build:
       context: ./nest
       dockerfile: Dockerfile
-    command: npm run start:dev
+    command: sh -c "yarn install && npm run start:dev" # Ensure node_modules is synced with host
     volumes:
       - ./nest:/app
       - /app/node_modules
@@ -27,7 +27,7 @@ services:
     build:
       context: ./next
       dockerfile: Dockerfile
-    command: npm run dev
+    command: sh -c "yarn install && npm run dev" # Ensure node_modules is synced with host
     volumes:
       - ./next:/app
       - /app/node_modules

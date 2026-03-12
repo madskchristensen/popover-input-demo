@@ -132,8 +132,6 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
 
   const isTableDataReady = isFetchedAfterMount && tableData.length > 0
 
-  console.log('hi')
-
   return (
     <>
       <div className='py-2 bg-white border border-gray rounded'>
