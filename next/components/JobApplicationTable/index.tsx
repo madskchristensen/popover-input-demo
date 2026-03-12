@@ -15,16 +15,20 @@ import useIntersectionObserver from '@/hooks/intersection'
 import { useJobApplicationControllerFindAllInfinite } from '@/orval/generated/api/job-application/job-application'
 import { useJobCategoryControllerFindAll } from '@/orval/generated/api/job-category/job-category'
 import { useJobRoleControllerFindAll } from '@/orval/generated/api/job-role/job-role'
+import { useInView } from 'react-intersection-observer'
 
 type JobApplicationTableProps = {}
 
 export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
+  const { ref, inView } = useInView({
+    rootMargin: '300px',
+    threshold: 1.0,
+  })
+
   const [sorting, setSorting] = useLocalStorage<SortingState>(
     'jobApplication',
     [],
   )
-
-  const listEndRef = useRef(null)
 
   const searchParams = useSearchParams()
 
@@ -92,6 +96,12 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
     },
   )
 
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetching) {
+      fetchNextPage()
+    }
+  }, [inView, fetchNextPage, hasNextPage, isFetching])
+
   const flatJobApplicationsData = useMemo(
     () => jobApplicationsInfinite?.pages.map((page) => page.data).flat() ?? [],
     [jobApplicationsInfinite],
@@ -116,18 +126,13 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
     }
   }, [columnVisibility, setSorting, sorting])
 
-  // TODO?: Could be cleaner with import from usehooks-ts. Requires some adjusting.
-  useIntersectionObserver({
-    target: listEndRef,
-    onIntersect: fetchNextPage,
-    enabled: hasNextPage && !isFetching,
-  })
-
   // TODO: error?.response?.data might not work. Unsure where the error data is put. Consider adding result interceptor to Nest with standardized format for responses.
   // error?.response?.data ?? 'Something went wrong while fetching data.'
   const errorMessage = 'Something went wrong while fetching data.'
 
   const isTableDataReady = isFetchedAfterMount && tableData.length > 0
+
+  console.log('hi')
 
   return (
     <>
@@ -182,7 +187,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
             </table>
           </div>
         )}
-        {hasNextPage && <div ref={listEndRef} />}
+        {hasNextPage && <div ref={ref} />}
         {(hasNextPage || (!isTableDataReady && isFetching)) && (
           <div className='p-6 flex items-center justify-center text-center'>
             <Spinner />
