@@ -1,4 +1,4 @@
-import JobApplicationTable from '@/components/JobApplicationTable/JobApplicationTable'
+import JobApplicationTable from '@/components/JobApplicationTable'
 import { Geist, Geist_Mono } from 'next/font/google'
 
 const geistSans = Geist({
