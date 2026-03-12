@@ -10,7 +10,9 @@ The project contains **3** Docker services: `nest`, `next` and `postgres`, which
 
 ## How to run
 
-1. Run `docker compose up`. Wait for the containers to run.
-2. Run `yarn next codegen` to build API types and queries.
-3. Run `yarn nest seed` to populate the database.
-4. Access the table at `http://localhost:3000`
+1. Run `env:init` from the root directory. This copies `.env.example` -> `.env`. The example `.env` contains sensible variables to run the project with.
+2. Run `docker compose up`. Wait for the containers to run.
+3. Run `next codegen` to build API types and queries.
+4. Run `nest seed` to populate the database.
+
+The project is built around a single data table. Once all containers are running, the table can be found at the index page at `/` (e.g. `http://localhost:3000`).

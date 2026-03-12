@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "nest": "yarn --cwd ./nest",
-    "next": "yarn --cwd ./next"
+    "next": "yarn --cwd ./next",
+    "init:env": "cp .env.example .env"
   }
 }

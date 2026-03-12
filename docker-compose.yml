@@ -10,14 +10,16 @@ services:
       - ./nest:/app
       - /app/node_modules
     ports:
-      - "3001:3001"
+      - "${NEST_PORT}:${NEST_PORT}"
     environment:
-      - NODE_ENV=development
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_NAME=popover_input_demo
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${NEST_PORT}
+      - NEXT_URL=${NEXT_URL}
+      - DB_HOST=${POSTGRES_HOST}
+      - DB_PORT=${POSTGRES_PORT}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_NAME=${POSTGRES_DB}
     depends_on:
       postgres:
         condition: service_healthy
@@ -27,28 +29,30 @@ services:
     build:
       context: ./next
       dockerfile: Dockerfile
-    command: sh -c "yarn install && npm run dev" # Ensure node_modules is synced with host
+    command: sh -c "yarn install && yarn dev" # Ensure node_modules is synced with host
     volumes:
       - ./next:/app
       - /app/node_modules
     ports:
-      - "3000:3000"
+      - "${NEXT_PORT}:${NEXT_PORT}"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${NEXT_PORT}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
   postgres:
     container_name: postgres-dev
     image: postgres:16-alpine
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT}:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: popover_input_demo
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
       interval: 5s
       timeout: 5s
       retries: 5
