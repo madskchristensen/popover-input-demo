@@ -1,4 +1,8 @@
-import { SEARCH_ACTION, TableIdentifier } from '@/hooks/popover-search/types'
+import {
+  SEARCH_ACTION,
+  SearchIdentifier,
+  TableIdentifier,
+} from '@/hooks/popover-search/types'
 import { CloseIcon } from '@chakra-ui/icons'
 import {
   Box,
@@ -12,9 +16,8 @@ import {
 } from '@chakra-ui/react'
 import React, { JSX } from 'react'
 
-type PopoverInputWrapperProps = TableIdentifier & {
+type PopoverInputWrapperProps = SearchIdentifier & {
   value: string
-  name: string
   updateState: (searchAction: SEARCH_ACTION) => void
   isDisabled?: boolean
   label: string
@@ -28,7 +31,7 @@ type PopoverInputWrapperProps = TableIdentifier & {
 
 const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
   value,
-  name,
+  column,
   table,
   updateState,
   children,
@@ -96,7 +99,7 @@ const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
                           updateState({
                             action: 'RESET_SINGLE',
                             table,
-                            name,
+                            column,
                           })
                         }}
                       >

@@ -354,7 +354,7 @@
       "SearchColumnDto": {
         "type": "object",
         "properties": {
-          "name": {
+          "column": {
             "type": "string"
           },
           "payload": {
@@ -362,7 +362,7 @@
           }
         },
         "required": [
-          "name",
+          "column",
           "payload"
         ]
       },

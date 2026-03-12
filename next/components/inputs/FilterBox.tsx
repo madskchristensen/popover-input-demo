@@ -22,8 +22,8 @@ const FilterBox: FC<FilterBoxProps> = ({
 
   return (
     <Fragment key={table}>
-      {columns.map(({ name, payload }) => {
-        const searchInput = getInput({ table, name })
+      {columns.map(({ column, payload }) => {
+        const searchInput = getInput({ table, column })
 
         let dependantValue
 
@@ -33,23 +33,23 @@ const FilterBox: FC<FilterBoxProps> = ({
           )
 
           const foundColumn = foundTable?.columns.find(
-            (c) => c.name === searchInput.isDependantOn?.column,
+            (c) => c.column === searchInput.isDependantOn?.column,
           )
 
           dependantValue = foundColumn?.payload.value
         }
 
         return (
-          <Fragment key={name}>
+          <Fragment key={column}>
             {searchInput.type === 'dropdown' && (
               <PopoverDropdown
-                name={name}
+                column={column}
                 value={payload.value}
                 label={searchInput.label}
                 transformer={searchInput.transformer}
                 updateState={updateState}
                 table={table}
-                optionsSource={optionsSourceMap[`${table}_${name}`]}
+                optionsSource={optionsSourceMap[`${table}_${column}`]}
                 dependantValue={searchInput.isDependantOn && dependantValue}
                 isDisabled={searchInput.isDependantOn && !dependantValue}
               />
@@ -57,10 +57,10 @@ const FilterBox: FC<FilterBoxProps> = ({
             {searchInput.type === 'text' && (
               <PopoverTextInput
                 exact={payload.exact}
-                name={name}
+                table={table}
+                column={column}
                 value={payload.value}
                 label={searchInput.label}
-                table={table}
                 updateState={updateState}
               />
             )}

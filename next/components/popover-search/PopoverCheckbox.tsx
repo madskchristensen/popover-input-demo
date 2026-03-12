@@ -1,16 +1,15 @@
-import { SEARCH_ACTION, TableIdentifier } from '@/hooks/popover-search/types'
+import { SEARCH_ACTION, SearchIdentifier } from '@/hooks/popover-search/types'
 import { Checkbox } from '@chakra-ui/react'
 import { memo } from 'react'
 
-type PopoverCheckboxProps = TableIdentifier & {
-  name: string
+type PopoverCheckboxProps = SearchIdentifier & {
   value: string
   exact: boolean
   updateState: (searchAction: SEARCH_ACTION) => void
 }
 
 const PopoverCheckbox: React.FC<PopoverCheckboxProps> = ({
-  name,
+  column,
   value,
   exact,
   updateState,
@@ -24,7 +23,7 @@ const PopoverCheckbox: React.FC<PopoverCheckboxProps> = ({
         updateState({
           action: 'SET_VALUE',
           table,
-          name,
+          column,
           payload: {
             value,
             exact: e.target.checked,

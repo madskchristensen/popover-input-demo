@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 const fingerprint = (state: SearchDto[]) =>
   state
-    .map((s) => `${s.table}:${s.columns.map((c) => c.name).join(',')}`)
+    .map((s) => `${s.table}:${s.columns.map((c) => c.column).join(',')}`)
     .join('|')
 
 /**

@@ -38,7 +38,7 @@ export class JobApplicationService {
       qb.andWhere(
         new Brackets((qb) => {
           search.forEach(({ columns, table }) => {
-            columns.forEach(({ payload, name }) => {
+            columns.forEach(({ payload, column }) => {
               const { exact, value } = payload
 
               const operator = exact ? '=' : 'ILIKE'
@@ -48,12 +48,12 @@ export class JobApplicationService {
                 ? normalizedValue
                 : `%${normalizedValue}%`
 
-              const paramName = `search_value_${table}_${name}` // Makes sure the parameter name is unique
+              const paramName = `search_value_${table}_${column}` // Makes sure the parameter name is unique
 
               // Cast the value from the searched column to text to avoid issues when dealing with ENUMS, numbers etc.
               // Use unaccent to remove diacritics (normalize search input)
               qb.andWhere(
-                `unaccent(CAST("${table}"."${name}" AS TEXT)) ${operator} unaccent(:${paramName})`,
+                `unaccent(CAST("${table}"."${column}" AS TEXT)) ${operator} unaccent(:${paramName})`,
                 {
                   [paramName]: searchValue,
                 },

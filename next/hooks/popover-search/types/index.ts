@@ -7,7 +7,7 @@ import { JSX } from 'react'
 
 // Basically just typing what identifies a table and a column. Maybe overly redundant
 export type TableIdentifier = Pick<SearchDto, 'table'>
-export type ColumnIdentifier = Pick<SearchColumnDto, 'name'>
+export type ColumnIdentifier = Pick<SearchColumnDto, 'column'>
 export type SearchIdentifier = TableIdentifier & ColumnIdentifier
 
 export type SelectOption = {
@@ -37,10 +37,7 @@ export type SearchInputDropdown = BaseSearchInput & {
   // Any is somewhat valid - As long as SelectOption is returned the interface is valid.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transformer: (source: any[]) => SelectOption[]
-  isDependantOn?: {
-    table: string
-    column: string
-  }
+  isDependantOn?: SearchIdentifier
 }
 
 // GET INPUT FN

@@ -13,7 +13,7 @@ export const dispatch = (
     return initialState
   }
 
-  const { name, table } = searchAction
+  const { column, table } = searchAction
 
   if (action === 'RESET_SINGLE') {
     return prev.map((prevSearch) => {
@@ -22,12 +22,12 @@ export const dispatch = (
       return {
         ...prevSearch,
         columns: prevSearch.columns.map((prevColumn) => {
-          if (prevColumn.name === name) {
+          if (prevColumn.column === column) {
             return {
               ...prevColumn,
               payload: {
                 value: '',
-                exact: getInput({ table, name }).type === 'dropdown',
+                exact: getInput({ table, column }).type === 'dropdown',
               },
             } satisfies SearchColumnDto
           }
@@ -47,13 +47,13 @@ export const dispatch = (
       return {
         ...prevSearch,
         columns: prevSearch.columns.map((prevColumn) => {
-          if (prevColumn.name === name) {
+          if (prevColumn.column === column) {
             return {
               ...prevColumn,
               payload: {
                 value,
                 exact:
-                  getInput({ table, name }).type === 'dropdown' ? true : exact,
+                  getInput({ table, column }).type === 'dropdown' ? true : exact,
               },
             } satisfies SearchColumnDto
           }

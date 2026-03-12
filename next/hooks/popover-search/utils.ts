@@ -6,8 +6,8 @@ export const computeHasValues = (
   getInput: GetInputFn,
 ): boolean => {
   return searchState.some(({ columns, table }) => {
-    return columns.some(({ name, payload }) => {
-      const isDropdown = getInput({ table, name }).type === 'dropdown'
+    return columns.some(({ column, payload }) => {
+      const isDropdown = getInput({ table, column }).type === 'dropdown'
 
       const { value, exact } = payload
 

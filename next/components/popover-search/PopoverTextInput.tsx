@@ -3,11 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useDebounceCallback } from 'usehooks-ts'
 import PopoverCheckbox from './PopoverCheckbox'
 import PopoverInputWrapper from './PopoverInputWrapper'
-import { SEARCH_ACTION, TableIdentifier } from '@/hooks/popover-search/types'
+import { SEARCH_ACTION, SearchIdentifier } from '@/hooks/popover-search/types'
 
-type PopoverTextInputProps = TableIdentifier & {
+type PopoverTextInputProps = SearchIdentifier & {
   value: string
-  name: string
   label: string
   exact: boolean
   updateState: (searchAction: SEARCH_ACTION) => void
@@ -17,7 +16,7 @@ type PopoverTextInputProps = TableIdentifier & {
 const PopoverTextInput: React.FC<PopoverTextInputProps> = ({
   value,
   exact,
-  name,
+  column,
   label,
   updateState,
   table,
@@ -38,7 +37,7 @@ const PopoverTextInput: React.FC<PopoverTextInputProps> = ({
       initialFocusRef={initialFocusRef}
       label={label}
       value={internalValue}
-      name={name}
+      column={column}
     >
       <>
         <Input
@@ -53,7 +52,7 @@ const PopoverTextInput: React.FC<PopoverTextInputProps> = ({
             debouncedUpdateState({
               action: 'SET_VALUE',
               table,
-              name,
+              column,
               payload: {
                 value: e.target.value,
                 exact,
@@ -63,7 +62,7 @@ const PopoverTextInput: React.FC<PopoverTextInputProps> = ({
         />
 
         <PopoverCheckbox
-          name={name}
+          column={column}
           value={value}
           exact={exact}
           table={table}

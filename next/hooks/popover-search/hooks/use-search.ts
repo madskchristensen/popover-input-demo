@@ -25,9 +25,9 @@ export const useSearchState = (key: SEARCH_KEY) => {
   // Seperating state from inputs is nessecary since inputs can contain functions that are removed when serializing/de-serializing with localStorage.
   const initialState = useMemo((): SearchDto[] => {
     const searchState: SearchDto[] = inputDtos.map(({ table, inputs }) => {
-      const columns = inputs.map(({ type, name }) => {
+      const columns = inputs.map(({ type, column }) => {
         return {
-          name,
+          column,
           payload: {
             value: '',
             exact: type === 'dropdown',
@@ -54,14 +54,14 @@ export const useSearchState = (key: SEARCH_KEY) => {
 
   useSearchReconciliation(searchState, initialState, setSearchState)
 
-  // Create a lookup map for the inputs to easily find the input by table and name
+  // Create a lookup map for the inputs to easily find the input by table and column
   const inputLookupMap = useMemo(() => {
-    // Ideally key should be typed as `${table}-${name}`, with only possible table and name values from the inputDto array, but that's tricky.
+    // Ideally key should be typed as `${table}-${column}`, with only possible table and column values from the inputDto array, but that's tricky.
     const lookupMap = new Map<string, SearchInput>()
 
     inputDtos.forEach(({ table, inputs }) => {
       inputs.forEach((input) => {
-        lookupMap.set(`${table}-${input.name}`, { ...input })
+        lookupMap.set(`${table}-${input.column}`, { ...input })
       })
     })
 
@@ -71,11 +71,11 @@ export const useSearchState = (key: SEARCH_KEY) => {
   // The only way for an input to not exist, is if the localStorage "blueprint" is out-of-sync with the "blueprint" in code.
   // This is fixed through reconcellation.
   const getInput = useCallback(
-    ({ table, name }: SearchIdentifier) => {
-      const input = inputLookupMap.get(`${table}-${name}`)
+    ({ table, column }: SearchIdentifier) => {
+      const input = inputLookupMap.get(`${table}-${column}`)
 
       if (!input) {
-        throw new Error(`Input not found for ${table}-${name}`)
+        throw new Error(`Input not found for ${table}-${column}`)
       }
 
       return input

@@ -40,7 +40,7 @@ export class SearchPayload {
 export class SearchColumnDto {
   @IsNotEmpty()
   @IsString()
-  name: string
+  column: string
 
   @IsDefined()
   @ValidateNested()

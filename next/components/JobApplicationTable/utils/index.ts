@@ -16,7 +16,7 @@ export const getSelectedCategoryId = (
 
   const selectedCategoryCode = searchState
     .find((state) => state.table === 'jobCategory')
-    ?.columns.find((column) => column.name === 'code')?.payload.value
+    ?.columns.find((c) => c.column === 'code')?.payload.value
 
   return jobCategories.find(
     (category) => category.code === selectedCategoryCode,

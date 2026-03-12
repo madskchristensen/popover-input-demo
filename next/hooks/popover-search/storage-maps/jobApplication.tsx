@@ -13,22 +13,22 @@ export const searchStateJobApplication: SearchInputDto[] = [
     table: 'jobApplication',
     inputs: [
       {
-        name: 'firstName',
+        column: 'firstName',
         label: 'First Name',
         type: 'text',
       },
       {
-        name: 'lastName',
+        column: 'lastName',
         label: 'Last Name',
         type: 'text',
       },
       {
-        name: 'email',
+        column: 'email',
         label: 'Email',
         type: 'text',
       },
       {
-        name: 'status',
+        column: 'status',
         label: 'Status',
         type: 'dropdown',
         transformer: (): SelectOption[] =>
@@ -43,7 +43,7 @@ export const searchStateJobApplication: SearchInputDto[] = [
     table: 'jobCategory',
     inputs: [
       {
-        name: 'code',
+        column: 'code',
         label: 'Category',
         type: 'dropdown',
         transformer: (source: JobCategory[]): SelectOption[] =>
@@ -58,7 +58,7 @@ export const searchStateJobApplication: SearchInputDto[] = [
     table: 'jobRole',
     inputs: [
       {
-        name: 'title',
+        column: 'title',
         label: 'Role',
         type: 'dropdown',
         transformer: (source: JobRole[]): SelectOption[] =>

@@ -5,13 +5,12 @@ import PopoverInputWrapper from './PopoverInputWrapper'
 import SelectDropdown from '../inputs/SelectDropdown'
 import {
   SEARCH_ACTION,
+  SearchIdentifier,
   SelectOption,
-  TableIdentifier,
 } from '@/hooks/popover-search/types'
 
-type PopoverDropdownProps = TableIdentifier & {
+type PopoverDropdownProps = SearchIdentifier & {
   value: string
-  name: string
   label: string
   updateState: (searchAction: SEARCH_ACTION) => void
   isDisabled?: boolean
@@ -22,7 +21,7 @@ type PopoverDropdownProps = TableIdentifier & {
 
 const PopoverDropdown: React.FC<PopoverDropdownProps> = ({
   value,
-  name,
+  column,
   updateState,
   table,
   label,
@@ -61,10 +60,10 @@ const PopoverDropdown: React.FC<PopoverDropdownProps> = ({
       updateState({
         action: 'RESET_SINGLE',
         table,
-        name,
+        column,
       })
     }
-  }, [dependantValue, name, table, updateState, value, dependantHasChanged])
+  }, [dependantValue, column, table, updateState, value, dependantHasChanged])
 
   // Bit of a hack. Ensures that if clearing a the value of the input this component is denendent on, it will reset the value of this input.
   useEffect(() => {
@@ -72,16 +71,16 @@ const PopoverDropdown: React.FC<PopoverDropdownProps> = ({
       updateState({
         action: 'RESET_SINGLE',
         table,
-        name,
+        column,
       })
     }
-  }, [isDisabled, name, table, updateState, value])
+  }, [isDisabled, column, table, updateState, value])
 
   return (
     <PopoverInputWrapper
       table={table}
       value={value}
-      name={name}
+      column={column}
       updateState={updateState}
       isDisabled={isDisabled}
       label={label}
@@ -94,7 +93,7 @@ const PopoverDropdown: React.FC<PopoverDropdownProps> = ({
         openMenuOnFocus={true}
         tabSelectsValue={false}
         initialFocusRef={initialFocusRef}
-        name={name}
+        name={column}
         options={options}
         placeholder={label}
         value={value}
@@ -103,7 +102,7 @@ const PopoverDropdown: React.FC<PopoverDropdownProps> = ({
           updateState({
             action: 'SET_VALUE',
             table,
-            name,
+            column,
             payload: {
               value: (val as SingleValue<SelectOption>)?.value ?? '',
               exact: true,
