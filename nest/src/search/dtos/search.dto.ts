@@ -36,10 +36,6 @@ export class SearchPayload {
    */
   @Transform(toBoolean)
   exact: boolean
-
-  @Transform(toBoolean)
-  @IsOptional()
-  allowMultiple?: boolean
 }
 
 export class SearchColumnDto {

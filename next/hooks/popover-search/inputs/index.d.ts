@@ -11,10 +11,7 @@ export type SearchInputDto = TableIdentifier & {
   inputs: SearchInput[]
 }
 
-export type SearchInput =
-  | SearchInputText
-  | SearchInputDropdown
-  | SearchInputCheckBoxDropdown
+export type SearchInput = SearchInputText | SearchInputDropdown
 
 type BaseSearchInput = ColumnIdentifier & {
   label: string

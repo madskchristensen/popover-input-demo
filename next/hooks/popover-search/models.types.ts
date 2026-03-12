@@ -11,5 +11,4 @@ export interface SearchColumnDto {
 export interface SearchPayload {
   value: string
   exact: boolean
-  allowMultiple?: boolean
 }
