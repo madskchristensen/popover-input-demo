@@ -1,7 +1,6 @@
 {
   "name": "popover-input-demo",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "nest": "yarn --cwd ./nest",
