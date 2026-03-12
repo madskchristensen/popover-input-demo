@@ -7,7 +7,6 @@ import {
   Box,
   Button,
   Flex,
-  IconButton,
   Popover,
   PopoverArrow,
   PopoverContent,
@@ -84,32 +83,31 @@ const PopoverInputWrapper: React.FC<PopoverInputWrapperProps> = ({
                       </span>
 
                       {/* TODO: Close icon can be hard to hit. Maybe margin/padding hack or another solution to make the clickable box bigger? */}
-                      <Box ml={2} pb={0.185}>
-                        <IconButton
-                          variant='link'
-                          aria-label={`Clear ${label}`}
-                          icon={
-                            <CloseIcon
-                              width='8px'
-                              height='8px'
-                              color='red'
-                              _hover={{ color: 'red.400' }}
-                            />
+                      <Box
+                        as='span'
+                        ml={2}
+                        pb={0.185}
+                        cursor={'pointer'}
+                        display={'inline-flex'}
+                        role='button'
+                        aria-label={`Clear ${label}`}
+                        onClick={(e: React.MouseEvent) => {
+                          if (!isOpen) {
+                            e.stopPropagation() // When resetting -> If popover is open, close it. If popover is closed, do nothing.
                           }
-                          cursor={'pointer'}
-                          minW={'auto'}
-                          display={'inline-flex'}
-                          onClick={(e) => {
-                            if (!isOpen) {
-                              e.stopPropagation() // When resetting -> If popover is open, close it. If popover is closed, do nothing.
-                            }
 
-                            updateState({
-                              action: 'RESET_SINGLE',
-                              table,
-                              name,
-                            })
-                          }}
+                          updateState({
+                            action: 'RESET_SINGLE',
+                            table,
+                            name,
+                          })
+                        }}
+                      >
+                        <CloseIcon
+                          width='8px'
+                          height='8px'
+                          color='red'
+                          _hover={{ color: 'red.400' }}
                         />
                       </Box>
                     </>
