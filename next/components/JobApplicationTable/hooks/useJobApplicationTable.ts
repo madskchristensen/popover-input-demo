@@ -5,7 +5,6 @@ import {
   SortingState,
   Updater,
   useReactTable,
-  VisibilityState,
 } from '@tanstack/react-table'
 import { useEffect, useMemo, useState } from 'react'
 import { useJobApplicationTableColumns } from './useJobApplicationTableColumns'
@@ -19,21 +18,6 @@ interface UseJobApplicationTableProps {
   page: string | null
 }
 
-// Note: By default, react-table columns are visibile. Meaning we only have to explicitly set visibility if toggling visibility.
-const getColumnVisibilityForPage = (page: string | null): VisibilityState => {
-  switch (page) {
-    case 'contractUnpaid':
-      return {
-        submittedDate: false,
-        pickupDateStart: true,
-      }
-    default:
-      return {
-        pickupDateStart: false,
-      }
-  }
-}
-
 export const useJobApplicationTable = ({
   rawData,
   sorting,
@@ -42,15 +26,7 @@ export const useJobApplicationTable = ({
 }: UseJobApplicationTableProps) => {
   const tableData = useSerializeJobApplicationTableData(rawData)
 
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
-    () => getColumnVisibilityForPage(page),
-  )
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
-
-  // Update visibility when page changes
-  useEffect(() => {
-    setColumnVisibility(getColumnVisibilityForPage(page))
-  }, [page])
 
   // Clear selection when page changes
   useEffect(() => {
@@ -67,11 +43,9 @@ export const useJobApplicationTable = ({
     state: {
       sorting,
       rowSelection,
-      columnVisibility,
     },
     onSortingChange,
     onRowSelectionChange: setRowSelection,
-    onColumnVisibilityChange: setColumnVisibility,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     manualSorting: true,
@@ -89,7 +63,6 @@ export const useJobApplicationTable = ({
     table,
     rows: table.getRowModel().rows,
     tableData,
-    columnVisibility,
     selectedFetchedData,
   }
 }

@@ -106,24 +106,13 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
     [jobApplicationsInfinite],
   )
 
-  const { table, rows, tableData, columnVisibility, selectedFetchedData } =
+  const { table, rows, tableData, selectedFetchedData } =
     useJobApplicationTable({
       rawData: flatJobApplicationsData,
       sorting,
       onSortingChange: setAndSaveSorting,
       page,
     })
-
-  // TODO: Consider removing. The visibility implementation is not pretty.
-  // Quick & hacky solution: Will reset sorting on navigation (or re-renders) if the sorted column is now hidden in the table.
-  useEffect(() => {
-    const sortingIdentifier = sorting.length && sorting[0].id
-
-    // We need to explicitly check for false, since undefined is a viable visibility option (undefined = column is visible.)
-    if (sortingIdentifier && columnVisibility[sorting[0].id] === false) {
-      setSorting([])
-    }
-  }, [columnVisibility, setSorting, sorting])
 
   // TODO: error?.response?.data might not work. Unsure where the error data is put. Consider adding result interceptor to Nest with standardized format for responses.
   // error?.response?.data ?? 'Something went wrong while fetching data.'
