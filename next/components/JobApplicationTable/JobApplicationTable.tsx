@@ -70,8 +70,6 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
     setSorting(nextSorting)
   }
 
-  console.log(filterEmpty(searchState))
-
   const {
     isFetching,
     isError,

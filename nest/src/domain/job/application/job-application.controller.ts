@@ -29,7 +29,6 @@ export class JobApplicationController {
   @ApiSearchQuery()
   @ApiPaginatedResponse(JobApplication)
   async findAll(@Query() query: QueryJobApplicationDto) {
-    console.log(query)
     const [found, total] = await this.service.findPaginated(query)
 
     return pageDtoFrom(found, query, total)
