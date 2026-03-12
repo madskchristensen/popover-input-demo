@@ -1,7 +1,6 @@
 import { useSearchState } from '@/hooks/popover-search/hooks/use-search'
 import { Button, Spinner } from '@chakra-ui/react'
 import { FC, useEffect, useMemo } from 'react'
-import FilterBox from '../inputs/FilterBox'
 import { getSelectedCategoryId, OPTIONS_SOURCE_MAP_KEYS } from './utils'
 import { useJobApplicationTable } from './hooks/useJobApplicationTable'
 import EmptyState from './components/EmptyState'
@@ -15,6 +14,7 @@ import { useJobApplicationControllerFindAllInfinite } from '@/orval/generated/ap
 import { useJobCategoryControllerFindAll } from '@/orval/generated/api/job-category/job-category'
 import { useJobRoleControllerFindAll } from '@/orval/generated/api/job-role/job-role'
 import { useInView } from 'react-intersection-observer'
+import PopoverSearch from '../popover-search/PopoverSearch'
 
 type JobApplicationTableProps = {}
 
@@ -127,7 +127,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
             {/* Each iteration handles inputs for 1 table */}
             {searchState.map(({ table, columns }) => {
               return (
-                <FilterBox
+                <PopoverSearch
                   key={table}
                   table={table}
                   columns={columns}

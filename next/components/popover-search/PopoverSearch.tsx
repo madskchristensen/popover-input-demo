@@ -1,6 +1,6 @@
 import { FC, Fragment } from 'react'
-import PopoverDropdown from '../popover-search/PopoverDropdown'
-import PopoverTextInput from '../popover-search/PopoverTextInput'
+import PopoverDropdown from './PopoverDropdown'
+import PopoverTextInput from './PopoverTextInput'
 import {
   GetInputFn,
   SEARCH_ACTION,
@@ -8,7 +8,7 @@ import {
 } from '@/hooks/popover-search/types'
 import { SearchColumnDto, SearchDto } from '@/orval/generated/models'
 
-type FilterBoxProps = {
+type PopoverSearchProps = {
   columns: SearchColumnDto[]
   table: SearchDto['table']
   optionsSourceMap: Record<string, any[]>
@@ -29,7 +29,7 @@ const getDependantValue = (
     ?.payload.value
 }
 
-const FilterBox: FC<FilterBoxProps> = ({
+const PopoverSearch: FC<PopoverSearchProps> = ({
   table,
   columns,
   optionsSourceMap,
@@ -81,4 +81,4 @@ const FilterBox: FC<FilterBoxProps> = ({
   )
 }
 
-export default FilterBox
+export default PopoverSearch
