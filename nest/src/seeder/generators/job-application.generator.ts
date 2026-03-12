@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { DeepPartial } from 'typeorm'
 import { JobApplication } from 'src/domain/job/application/entities/job-application.entity'
-import { ApplicationStatus } from 'src/domain/job/enums/application-status'
+import { ApplicationStatus } from 'src/domain/job/application/enums/application-status'
 
 const APPLICATION_STATUSES = Object.values(ApplicationStatus)
 

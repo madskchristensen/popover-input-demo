@@ -1,4 +1,4 @@
-import { ApplicationStatus } from 'src/domain/job/enums/application-status'
+import { ApplicationStatus } from 'src/domain/job/application/enums/application-status'
 import { JobRole } from 'src/domain/job/role/entities/job-role.entity'
 import { AbstractCreatedEntity } from 'src/typeorm/created-entity.entity'
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm'

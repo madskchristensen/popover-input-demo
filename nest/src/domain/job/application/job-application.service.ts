@@ -1,20 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Brackets, Repository } from 'typeorm'
 import { JobApplication } from './entities/job-application.entity'
-import {
-  CreateJobApplicationDto,
-  QueryJobApplicationDto,
-  UpdateJobApplicationDto,
-} from './dtos/job-application.dto'
-import { JobRoleService } from '../role/job-role.service'
+import { QueryJobApplicationDto } from './dtos/job-application.dto'
 
 @Injectable()
 export class JobApplicationService {
   constructor(
     @InjectRepository(JobApplication)
     private readonly repo: Repository<JobApplication>,
-    private readonly jobRoleService: JobRoleService,
   ) {}
 
   async findPaginated(
@@ -71,42 +65,5 @@ export class JobApplicationService {
     }
 
     return qb.orderBy('jobApplication.createdAt', 'DESC').getManyAndCount()
-  }
-
-  async findOne(id: string): Promise<JobApplication> {
-    const application = await this.repo.findOne({
-      where: { id },
-      relations: ['jobRole', 'jobRole.jobCategory'],
-    })
-    if (!application)
-      throw new NotFoundException(`JobApplication ${id} not found`)
-    return application
-  }
-
-  async create(dto: CreateJobApplicationDto): Promise<JobApplication> {
-    // Validate the role exists — implicitly validates the category chain too
-    await this.jobRoleService.findOne(dto.jobRoleId)
-
-    const application = this.repo.create(dto)
-    return this.repo.save(application)
-  }
-
-  async update(
-    id: string,
-    dto: UpdateJobApplicationDto,
-  ): Promise<JobApplication> {
-    const application = await this.findOne(id)
-
-    if (dto.jobRoleId && dto.jobRoleId !== application.jobRoleId) {
-      await this.jobRoleService.findOne(dto.jobRoleId)
-    }
-
-    Object.assign(application, dto)
-    return this.repo.save(application)
-  }
-
-  async remove(id: string): Promise<void> {
-    const application = await this.findOne(id)
-    await this.repo.remove(application)
   }
 }
