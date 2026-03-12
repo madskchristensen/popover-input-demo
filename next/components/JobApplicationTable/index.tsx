@@ -114,8 +114,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
       page,
     })
 
-  // TODO: error?.response?.data might not work. Unsure where the error data is put. Consider adding result interceptor to Nest with standardized format for responses.
-  // error?.response?.data ?? 'Something went wrong while fetching data.'
+  // TODO: Use error message from infinite hook
   const errorMessage = 'Something went wrong while fetching data.'
 
   const isTableDataReady = isFetchedAfterMount && tableData.length > 0
@@ -140,7 +139,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
 
           <Button
             ml={2}
-            variant='ghostBlack'
+            variant='outline'
             isDisabled={!hasValues}
             onClick={() => {
               updateState({
@@ -173,6 +172,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
             </table>
           </div>
         )}
+        {/* Intersection observer */}
         {hasNextPage && <div ref={ref} />}
         {(hasNextPage || (!isTableDataReady && isFetching)) && (
           <div className='p-6 flex items-center justify-center text-center'>

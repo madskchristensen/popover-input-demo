@@ -14,10 +14,12 @@ export const getSelectedCategoryId = (
   if (!jobCategories) return undefined
 
   const selectedCategoryName = searchState
-    .find((s) => s.table === 'jobCategory')
-    ?.columns.find((c) => c.name === 'name')?.payload.value
+    .find((state) => state.table === 'jobCategory')
+    ?.columns.find((column) => column.name === 'name')?.payload.value
 
-  return jobCategories.find((c) => c.name === selectedCategoryName)?.id
+  return jobCategories.find(
+    (category) => category.name === selectedCategoryName,
+  )?.id
 }
 
 export const deUnderScoreString = (val: string) => val.replace(/_/g, ' ')
