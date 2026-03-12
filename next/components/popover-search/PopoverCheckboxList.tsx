@@ -14,7 +14,6 @@ type PopoverCheckboxListProps = TableIdentifier & {
   label: string
   updateState: (params: SearchUpdateStateParams) => void
   isDisabled?: boolean
-  isHidden?: boolean
   dependantValue?: string
   optionsSource: any[]
   transformer: (options: any[]) => SelectOption[]
@@ -28,7 +27,6 @@ const PopoverCheckboxList: React.FC<PopoverCheckboxListProps> = ({
   label,
   transformer,
   isDisabled,
-  isHidden,
   dependantValue,
   optionsSource,
 }) => {
@@ -76,8 +74,6 @@ const PopoverCheckboxList: React.FC<PopoverCheckboxListProps> = ({
       })
     }
   }, [isDisabled, name, table, updateState, value])
-
-  if (isHidden) return null
 
   const displayValue =
     values.length === 1

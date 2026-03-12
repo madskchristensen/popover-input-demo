@@ -76,7 +76,6 @@ const FilterBox = ({
                 value={payload.value}
                 label={searchInput.label}
                 table={table}
-                isHidden={path.includes('selling') && page !== 'all'}
                 updateState={updateState}
                 optionsSource={optionsSourceMap[`${table}_${name}`]}
                 transformer={searchInput.transformer}
