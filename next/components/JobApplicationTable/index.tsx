@@ -33,7 +33,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
 
   const page = useMemo(() => searchParams.get('page'), [searchParams])
 
-  // TODO: Integrate this somehow. Want to display how it works when navigating
+  // TODO: Consider implementing. Useful to showcase behavior when re-mounting between page navigations
   /* 
     const queryOptions = useMemo(() => {
     if (page) {
