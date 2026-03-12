@@ -1,4 +1,4 @@
-import { SelectOption } from '@/hooks/popover-search/inputs'
+import { SelectOption } from '@/hooks/popover-search/core'
 import { FC, MutableRefObject } from 'react'
 import Select from 'react-select'
 import StateManagerProps from 'react-select'

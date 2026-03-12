@@ -1,11 +1,11 @@
 import { useCallback, useMemo } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
-import { SearchInput } from './inputs'
+import { SearchInput } from './core'
 import {
   localStorageInputMap,
   SEARCH_KEY,
   SEARCH_KEY_LOCAL_STORAGE,
-} from './inputs/storage-maps'
+} from './core/storage-maps'
 import { useSearchReconciliation } from './use-search-reconciliation'
 import {
   SearchColumnDto,

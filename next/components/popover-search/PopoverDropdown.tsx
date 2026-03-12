@@ -7,7 +7,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import { SingleValue } from 'react-select'
 import PopoverInputWrapper from './PopoverInputWrapper'
 import SelectDropdown from '../inputs/SelectDropdown'
-import { SelectOption } from '@/hooks/popover-search/inputs'
+import { SelectOption } from '@/hooks/popover-search/core'
 
 type PopoverDropdownProps = TableIdentifier & {
   value: string
