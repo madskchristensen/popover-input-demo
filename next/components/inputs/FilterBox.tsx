@@ -22,10 +22,6 @@ const FilterBox = ({
 }: FilterBoxProps) => {
   const { searchState, updateState, getInput } = useSearchState(searchKey)
 
-  const router = useRouter()
-  const path = router.pathname
-  const page = router.query.page
-
   return (
     <Fragment key={table}>
       {columns.map(({ name, payload }) => {
