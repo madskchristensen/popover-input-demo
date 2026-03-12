@@ -8,6 +8,7 @@ type TableActionBarProps = {
 
 const TableActionBar: FC<TableActionBarProps> = ({ selected }) => {
   const selectedIds = useMemo(() => selected.map(({ id }) => id), [selected])
+
   return (
     <Flex
       borderColor={'gray.200'}
