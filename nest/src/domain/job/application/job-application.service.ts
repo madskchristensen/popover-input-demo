@@ -29,7 +29,7 @@ export class JobApplicationService {
     const qb = this.repo
       .createQueryBuilder('jobApplication')
       .skip(skip)
-      .limit(limit)
+      .take(limit)
       .leftJoinAndSelect('jobApplication.jobRole', 'jobRole')
       .leftJoinAndSelect('jobRole.jobCategory', 'jobCategory')
 
