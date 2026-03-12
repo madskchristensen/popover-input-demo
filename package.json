@@ -1,7 +1,9 @@
 {
   "name": "popover-input-demo",
-  "version": "1.0.0",
-  "license": "MIT",
+  "version": "0.0.1",
+  "author": "Mads Kjærgaard Christensen",
+  "private": true,
+  "license": "UNLICENSED",
   "scripts": {
     "nest": "yarn --cwd ./nest",
     "next": "yarn --cwd ./next",
