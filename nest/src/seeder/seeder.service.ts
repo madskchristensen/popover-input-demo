@@ -27,7 +27,7 @@ const ROLES_BY_CATEGORY: Record<string, string[]> = {
   OPERATIONS: ['Project Manager', 'Scrum Master', 'Business Analyst'],
 }
 
-const APPLICATION_COUNT = 50
+const APPLICATION_COUNT = 200
 
 @Injectable()
 export class SeederService {
