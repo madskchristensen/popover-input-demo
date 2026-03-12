@@ -1,5 +1,4 @@
-import { TableIdentifier } from '@/hooks/popover-search/types'
-import { SEARCH_ACTION } from '@/hooks/popover-search/dispatch'
+import { SEARCH_ACTION, TableIdentifier } from '@/hooks/popover-search/types'
 import { Checkbox } from '@chakra-ui/react'
 import { memo } from 'react'
 

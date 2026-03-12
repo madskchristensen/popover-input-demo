@@ -1,3 +1,8 @@
+import {
+  SearchColumnDto,
+  SearchDto,
+  SearchPayload,
+} from '@/orval/generated/models'
 import { JSX } from 'react'
 
 // Basically just typing what identifies a table and a column. Maybe overly redundant

@@ -3,8 +3,11 @@ import { useEffect, useMemo, useRef } from 'react'
 import { SingleValue } from 'react-select'
 import PopoverInputWrapper from './PopoverInputWrapper'
 import SelectDropdown from '../inputs/SelectDropdown'
-import { SelectOption, TableIdentifier } from '@/hooks/popover-search/types'
-import { SEARCH_ACTION } from '@/hooks/popover-search/dispatch'
+import {
+  SEARCH_ACTION,
+  SelectOption,
+  TableIdentifier,
+} from '@/hooks/popover-search/types'
 
 type PopoverDropdownProps = TableIdentifier & {
   value: string

@@ -3,8 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useDebounceCallback } from 'usehooks-ts'
 import PopoverCheckbox from './PopoverCheckbox'
 import PopoverInputWrapper from './PopoverInputWrapper'
-import { TableIdentifier } from '@/hooks/popover-search/types'
-import { SEARCH_ACTION } from '@/hooks/popover-search/dispatch'
+import { SEARCH_ACTION, TableIdentifier } from '@/hooks/popover-search/types'
 
 type PopoverTextInputProps = TableIdentifier & {
   value: string
