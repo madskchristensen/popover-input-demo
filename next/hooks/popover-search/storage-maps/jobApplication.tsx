@@ -7,6 +7,7 @@ import {
 } from '@/orval/generated/models'
 
 // TODO: Consider combining firstName + lastName
+// ! The dropdowns are dependant on the source map: OPTIONS_SOURCE_MAP_KEYS (/utils/index.ts)
 export const searchStateJobApplication: SearchInputDto[] = [
   {
     table: 'jobApplication',
@@ -42,13 +43,13 @@ export const searchStateJobApplication: SearchInputDto[] = [
     table: 'jobCategory',
     inputs: [
       {
-        name: 'name',
+        name: 'code',
         label: 'Category',
         type: 'dropdown',
         transformer: (source: JobCategory[]): SelectOption[] =>
           source.map((category) => ({
             label: category.name,
-            value: category.name,
+            value: category.code,
           })),
       },
     ],
@@ -67,7 +68,7 @@ export const searchStateJobApplication: SearchInputDto[] = [
           })),
         isDependantOn: {
           table: 'jobCategory',
-          column: 'name',
+          column: 'code',
         },
       },
     ],

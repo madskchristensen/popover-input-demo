@@ -10,6 +10,7 @@ const fingerprint = (state: SearchDto[]) =>
  * Resets persisted search state when the input definitions change
  * (e.g. renamed tables, added/removed columns).
  */
+// TODO: Take another look at this. Doesn't seem to work =)
 export const useSearchReconciliation = (
   persisted: SearchDto[],
   initial: SearchDto[],

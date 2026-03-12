@@ -1,8 +1,9 @@
 import { SearchDto } from '@/orval/generated/models'
 import { JobCategory } from '@/orval/generated/models'
 
+// TODO: Could this be improved? Creates an invisible (non-typed!) coupling to the dropdown inputs. I.e. changing the filtered column in an input, requires adjusting this map too.
 export const OPTIONS_SOURCE_MAP_KEYS = {
-  JOB_CATEGORY: 'jobCategory_name',
+  JOB_CATEGORY: 'jobCategory_code',
   JOB_ROLE: 'jobRole_title',
   JOB_APPLICATION_STATUS: 'jobApplication_status',
 } as const
@@ -13,12 +14,12 @@ export const getSelectedCategoryId = (
 ) => {
   if (!jobCategories) return undefined
 
-  const selectedCategoryName = searchState
+  const selectedCategoryCode = searchState
     .find((state) => state.table === 'jobCategory')
-    ?.columns.find((column) => column.name === 'name')?.payload.value
+    ?.columns.find((column) => column.name === 'code')?.payload.value
 
   return jobCategories.find(
-    (category) => category.name === selectedCategoryName,
+    (category) => category.code === selectedCategoryCode,
   )?.id
 }
 

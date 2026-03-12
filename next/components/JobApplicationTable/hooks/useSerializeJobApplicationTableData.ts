@@ -32,8 +32,8 @@ export const useSerializeJobApplicationTableData = (
         status,
         country,
         createdAt: formatDate(createdAt),
-        jobRole: jobRole.title, // TODO: Re-check this. How do i want to serialize?
-        jobCategory: jobRole.jobCategory.name, // TODO: Re-check this. How do i want to serialize?
+        jobRole: jobRole.title,
+        jobCategory: jobRole.jobCategory.name,
       } satisfies JobApplicationTableItem
     })
   }, [jobApplications])

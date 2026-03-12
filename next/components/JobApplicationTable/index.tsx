@@ -63,7 +63,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
     return {
       [OPTIONS_SOURCE_MAP_KEYS.JOB_CATEGORY]: jobCategories ?? [],
       [OPTIONS_SOURCE_MAP_KEYS.JOB_ROLE]: jobRoles ?? [],
-      [OPTIONS_SOURCE_MAP_KEYS.JOB_APPLICATION_STATUS]: [],
+      [OPTIONS_SOURCE_MAP_KEYS.JOB_APPLICATION_STATUS]: [], // TODO: Could maybe be removed. Defining an empty array here and harcoded array in the storage-map. The hardcoded array should only be in 1 place, and no empty array at all.
     }
   }, [jobCategories, jobRoles])
 
