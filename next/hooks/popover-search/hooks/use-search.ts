@@ -68,8 +68,8 @@ export const useSearchState = (key: SEARCH_KEY) => {
     return lookupMap
   }, [inputDtos])
 
-  // This is guaranteed to be a valid input since the lookup map is created from the inputDtos.
-  // The falsey check is just to satisfy TypeScript, since typing this key of ${table}-${name} is really tricky.
+  // The only way for an input to not exist, is if the localStorage "blueprint" is out-of-sync with the "blueprint" in code.
+  // This is fixed through reconcellation.
   const getInput = useCallback(
     ({ table, name }: SearchIdentifier) => {
       const input = inputLookupMap.get(`${table}-${name}`)
