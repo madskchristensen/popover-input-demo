@@ -5,7 +5,6 @@ import {
   IsBoolean,
   IsDefined,
   IsNotEmpty,
-  IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator'
