@@ -42,7 +42,6 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
   }, [page])
   */
 
-  // TODO: getInput is not used with the newer changes. Maybe remove from implementation entirely?
   const { searchState, updateState, hasValues, filterEmpty } =
     useSearchState('jobApplication')
 
