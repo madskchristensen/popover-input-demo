@@ -32,9 +32,9 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
 
   // TODO: Integrate this somehow. Want to display how it works when navigating
   /* 
-    const submissionOptions = useMemo(() => {
+    const queryOptions = useMemo(() => {
     if (page) {
-      return getSubmissionOptionsFromPage(page)
+      return getQueryOptions(page)
     }
   }, [page])
   */
@@ -82,7 +82,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
     isFetchedAfterMount,
   } = useJobApplicationControllerFindAllInfinite(
     {
-      // ...submissionOptions, // TODO: Re-add once implemented above.
+      // ...queryOptions, // TODO: Re-add once implemented above.
       search: filterEmpty(searchState),
     },
     {
