@@ -1,7 +1,5 @@
-import {
-  SearchUpdateStateParams,
-  TableIdentifier,
-} from '@/hooks/popover-search/use-search'
+import { TableIdentifier } from '@/hooks/popover-search/core'
+import { SearchUpdateStateParams } from '@/hooks/popover-search/use-search'
 import { Checkbox } from '@chakra-ui/react'
 import { memo } from 'react'
 

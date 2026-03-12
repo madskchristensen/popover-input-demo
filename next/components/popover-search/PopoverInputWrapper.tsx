@@ -1,7 +1,5 @@
-import {
-  SearchUpdateStateParams,
-  TableIdentifier,
-} from '@/hooks/popover-search/use-search'
+import { TableIdentifier } from '@/hooks/popover-search/core'
+import { SearchUpdateStateParams } from '@/hooks/popover-search/use-search'
 import { CloseIcon } from '@chakra-ui/icons'
 import {
   Box,

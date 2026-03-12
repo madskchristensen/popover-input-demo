@@ -1,12 +1,10 @@
-import {
-  SearchUpdateStateParams,
-  TableIdentifier,
-} from '@/hooks/popover-search/use-search'
+import { SearchUpdateStateParams } from '@/hooks/popover-search/use-search'
 import { Input } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { useDebounceCallback } from 'usehooks-ts'
 import PopoverCheckbox from './PopoverCheckbox'
 import PopoverInputWrapper from './PopoverInputWrapper'
+import { TableIdentifier } from '@/hooks/popover-search/core'
 
 type PopoverTextInputProps = TableIdentifier & {
   value: string

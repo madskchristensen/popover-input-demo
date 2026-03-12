@@ -7,29 +7,15 @@ import {
   SEARCH_KEY_LOCAL_STORAGE,
 } from './core/storage-maps'
 import { useSearchReconciliation } from './use-search-reconciliation'
+import { SearchColumnDto, SearchDto } from '@/orval/generated/models'
 import {
-  SearchColumnDto,
-  SearchDto,
-  SearchPayload,
-} from '@/orval/generated/models'
+  applySearchAction,
+  computeHasValues,
+  filterEmpty,
+  SEARCH_ACTION,
+} from './utils'
 
-type SearchSetValueParams = SearchIdentifier & {
-  action: 'SET_VALUE'
-  payload: SearchPayload
-}
-
-type SearchResetAllParams = {
-  action: 'RESET_ALL'
-}
-
-type SearchResetSingleParams = SearchIdentifier & {
-  action: 'RESET_SINGLE'
-}
-
-export type SearchUpdateStateParams =
-  | SearchSetValueParams
-  | SearchResetAllParams
-  | SearchResetSingleParams
+export type { SEARCH_ACTION as SearchUpdateStateParams } from './utils'
 
 // TODO: Integrate with redux. Could use a reconciliation strategy, which would likely make the useSearchReconciliation redundant.
 export const useSearchState = (key: SEARCH_KEY) => {
@@ -104,115 +90,18 @@ export const useSearchState = (key: SEARCH_KEY) => {
   )
 
   const updateState = useCallback(
-    (params: SearchUpdateStateParams) => {
-      const { action } = params
-
-      const { name, table } = params as
-        | SearchSetValueParams
-        | SearchResetSingleParams
-
-      if (action === 'RESET_ALL') {
-        setSearchState(initialState)
-        return
-      }
-
-      if (action === 'RESET_SINGLE') {
-        setSearchState((prev) =>
-          prev.map((prevSearch) => {
-            if (prevSearch.table !== table) return prevSearch
-
-            return {
-              ...prevSearch,
-              columns: prevSearch.columns.map((prevColumn) => {
-                if (prevColumn.name === name) {
-                  return {
-                    ...prevColumn,
-                    payload: {
-                      value: '',
-                      exact: getInput({ table, name }).type === 'dropdown',
-                    },
-                  } satisfies SearchColumnDto
-                }
-
-                return prevColumn
-              }),
-            }
-          }),
-        )
-
-        return
-      }
-
-      if (action === 'SET_VALUE') {
-        const { value, exact } = params.payload
-
-        setSearchState((prev) =>
-          prev.map((prevSearch) => {
-            if (prevSearch.table !== table) return prevSearch
-
-            return {
-              ...prevSearch,
-              columns: prevSearch.columns.map((prevColumn) => {
-                if (prevColumn.name === name) {
-                  return {
-                    ...prevColumn,
-                    payload: {
-                      value,
-                      exact:
-                        getInput({ table, name }).type === 'dropdown'
-                          ? true
-                          : exact,
-                    },
-                  } satisfies SearchColumnDto
-                }
-
-                return prevColumn
-              }),
-            }
-          }),
-        )
-
-        return
-      }
+    (params: SEARCH_ACTION) => {
+      setSearchState((prev) =>
+        applySearchAction(prev, params, initialState, getInput),
+      )
     },
     [setSearchState, initialState, getInput],
   )
 
-  const hasValues = useMemo(() => {
-    return searchState.some(({ columns, table }) => {
-      const canReset = columns.some(({ name, payload }) => {
-        const isDropdown = getInput({ table, name }).type === 'dropdown'
-
-        const { value, exact } = payload
-
-        if (value !== '' || (!isDropdown && exact)) return true
-
-        return false
-      })
-
-      return canReset
-    })
-  }, [searchState, getInput])
-
-  const filterEmpty = useCallback((searchState: SearchDto[]) => {
-    const filtered = searchState
-      .map(({ columns, table }) => {
-        // Filter out columns with falsey values
-        const filteredColumns = columns.filter(({ payload }) => !!payload.value)
-
-        // Return the table only if it has valid columns
-        if (filteredColumns.length > 0) {
-          return {
-            table,
-            columns: filteredColumns,
-          }
-        }
-        return null // Exclude this table if it has no valid columns
-      })
-      .filter((table): table is SearchDto => table !== null) // Remove null values from the array
-
-    return filtered.length > 0 ? filtered : undefined
-  }, [])
+  const hasValues = useMemo(
+    () => computeHasValues(searchState, getInput),
+    [searchState, getInput],
+  )
 
   return {
     filterEmpty,
