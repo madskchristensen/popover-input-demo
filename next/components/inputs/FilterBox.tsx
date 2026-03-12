@@ -1,9 +1,9 @@
 import { SEARCH_KEY } from '@/hooks/popover-search/inputs/storage-maps'
-import { SearchColumnDto, SearchDto } from '@/hooks/popover-search/models.types'
 import { useSearchState } from '@/hooks/popover-search/use-search'
 import { FC, Fragment } from 'react'
 import PopoverDropdown from '../popover-search/PopoverDropdown'
 import PopoverTextInput from '../popover-search/PopoverTextInput'
+import { SearchColumnDto, SearchDto } from '@/orval/generated/models'
 
 type FilterBoxProps = {
   columns: SearchColumnDto[]

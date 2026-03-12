@@ -1,5 +1,5 @@
+import { SearchDto } from '@/orval/generated/models'
 import { useEffect } from 'react'
-import { SearchDto } from './models.types'
 
 const fingerprint = (state: SearchDto[]) =>
   state

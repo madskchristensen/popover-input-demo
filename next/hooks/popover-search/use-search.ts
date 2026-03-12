@@ -1,5 +1,4 @@
 import { useCallback, useMemo } from 'react'
-import { SearchColumnDto, SearchDto, SearchPayload } from './models.types'
 import { useLocalStorage } from 'usehooks-ts'
 import { SearchInput } from './inputs'
 import {
@@ -8,6 +7,11 @@ import {
   SEARCH_KEY_LOCAL_STORAGE,
 } from './inputs/storage-maps'
 import { useSearchReconciliation } from './use-search-reconciliation'
+import {
+  SearchColumnDto,
+  SearchDto,
+  SearchPayload,
+} from '@/orval/generated/models'
 
 export type TableIdentifier = Pick<SearchDto, 'table'>
 export type ColumnIdentifier = Pick<SearchColumnDto, 'name'>
