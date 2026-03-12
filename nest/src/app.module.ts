@@ -17,7 +17,7 @@ import { SeederModule } from './seeder/seeder.module'
       port: Number(process.env.DB_PORT) ?? 5432,
       username: process.env.DB_USER ?? 'postgres',
       password: process.env.DB_PASSWORD ?? 'postgres',
-      database: process.env.DB_NAME ?? 'popover_presentation_db',
+      database: process.env.DB_NAME ?? 'popover_input_demo',
       entities: [JobCategory, JobRole, JobApplication],
       synchronize: true,
     }),

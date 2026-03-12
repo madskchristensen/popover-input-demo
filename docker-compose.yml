@@ -17,7 +17,7 @@ services:
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=popover_presentation_db
+      - DB_NAME=popover_input_demo
     depends_on:
       postgres:
         condition: service_healthy
@@ -44,7 +44,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: popover_presentation_db
+      POSTGRES_DB: popover_input_demo
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
