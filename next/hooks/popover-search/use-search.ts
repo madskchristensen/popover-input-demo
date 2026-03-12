@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
-import { SearchInput } from './core'
+import { SearchIdentifier, SearchInput } from './core'
 import {
   localStorageInputMap,
   SEARCH_KEY,
@@ -12,10 +12,6 @@ import {
   SearchDto,
   SearchPayload,
 } from '@/orval/generated/models'
-
-export type TableIdentifier = Pick<SearchDto, 'table'>
-export type ColumnIdentifier = Pick<SearchColumnDto, 'name'>
-export type SearchIdentifier = TableIdentifier & ColumnIdentifier
 
 type SearchSetValueParams = SearchIdentifier & {
   action: 'SET_VALUE'

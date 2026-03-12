@@ -1,5 +1,8 @@
 import { JSX } from 'react'
-import { ColumnIdentifier, TableIdentifier } from '../use-search'
+
+export type TableIdentifier = Pick<SearchDto, 'table'>
+export type ColumnIdentifier = Pick<SearchColumnDto, 'name'>
+export type SearchIdentifier = TableIdentifier & ColumnIdentifier
 
 export type SelectOption = {
   label: string
