@@ -69,6 +69,8 @@ export const useSearchState = (key: SEARCH_KEY) => {
   const [searchState, setSearchState] = useLocalStorage<SearchDto[]>(
     localStorageKey,
     initialState,
+    // Must be false when used with SSR. True means the first render would contain localStorage values in client. Since this isn't available on server a error would be thrown due to hydration mismatch between client and server.
+    { initializeWithValue: false },
   )
 
   useSearchReconciliation(searchState, initialState, setSearchState)

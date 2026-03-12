@@ -27,6 +27,8 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
   const [sorting, setSorting] = useLocalStorage<SortingState>(
     'jobApplication',
     [],
+    // Must be false when used with SSR. True means the first render would contain localStorage values in client. Since this isn't available on server a error would be thrown due to hydration mismatch between client and server.
+    { initializeWithValue: false }, // false ONLY if used in combination with SSR. Fixes a hydration mismatch issue, happening because first render will hydrate with localStorage values ()
   )
 
   const searchParams = useSearchParams()
