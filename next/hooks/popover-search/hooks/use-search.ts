@@ -5,7 +5,7 @@ import {
   localStorageInputMap,
   SEARCH_KEY,
   SEARCH_KEY_LOCAL_STORAGE,
-} from '../storage-maps/storage-maps'
+} from '../types/storage-maps'
 import { useSearchReconciliation } from './use-search-reconciliation'
 import { SearchColumnDto, SearchDto } from '@/orval/generated/models'
 import { dispatch } from '../dispatch'
