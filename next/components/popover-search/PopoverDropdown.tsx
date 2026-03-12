@@ -1,16 +1,16 @@
-import { SearchUpdateStateParams } from '@/hooks/popover-search/use-search'
 import { useDisclosure } from '@chakra-ui/react'
 import { useEffect, useMemo, useRef } from 'react'
 import { SingleValue } from 'react-select'
 import PopoverInputWrapper from './PopoverInputWrapper'
 import SelectDropdown from '../inputs/SelectDropdown'
-import { SelectOption, TableIdentifier } from '@/hooks/popover-search/core'
+import { SelectOption, TableIdentifier } from '@/hooks/popover-search/types'
+import { SEARCH_ACTION } from '@/hooks/popover-search/dispatch'
 
 type PopoverDropdownProps = TableIdentifier & {
   value: string
   name: string
   label: string
-  updateState: (params: SearchUpdateStateParams) => void
+  updateState: (searchAction: SEARCH_ACTION) => void
   isDisabled?: boolean
   dependantValue?: string
   optionsSource: any[]

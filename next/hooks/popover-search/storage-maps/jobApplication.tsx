@@ -1,5 +1,5 @@
 import { deUnderScoreString } from '@/components/JobApplicationTable/utils'
-import { SearchInputDto, SelectOption } from '.'
+import { SearchInputDto, SelectOption } from '../types'
 import {
   JobApplicationStatus,
   JobCategory,

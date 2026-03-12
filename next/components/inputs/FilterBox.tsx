@@ -1,5 +1,5 @@
-import { SEARCH_KEY } from '@/hooks/popover-search/core/storage-maps'
-import { useSearchState } from '@/hooks/popover-search/use-search'
+import { SEARCH_KEY } from '@/hooks/popover-search/storage-maps/storage-maps'
+import { useSearchState } from '@/hooks/popover-search/hooks/use-search'
 import { FC, Fragment } from 'react'
 import PopoverDropdown from '../popover-search/PopoverDropdown'
 import PopoverTextInput from '../popover-search/PopoverTextInput'

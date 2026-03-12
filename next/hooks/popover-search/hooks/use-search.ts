@@ -1,21 +1,15 @@
 import { useCallback, useMemo } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
-import { SearchIdentifier, SearchInput } from './core'
+import { SEARCH_ACTION, SearchIdentifier, SearchInput } from '../types'
 import {
   localStorageInputMap,
   SEARCH_KEY,
   SEARCH_KEY_LOCAL_STORAGE,
-} from './core/storage-maps'
+} from '../storage-maps/storage-maps'
 import { useSearchReconciliation } from './use-search-reconciliation'
 import { SearchColumnDto, SearchDto } from '@/orval/generated/models'
-import {
-  applySearchAction,
-  computeHasValues,
-  filterEmpty,
-  SEARCH_ACTION,
-} from './utils'
-
-export type { SEARCH_ACTION as SearchUpdateStateParams } from './utils'
+import { dispatch } from '../dispatch'
+import { computeHasValues, filterEmpty } from '../utils'
 
 // TODO: Integrate with redux. Could use a reconciliation strategy, which would likely make the useSearchReconciliation redundant.
 export const useSearchState = (key: SEARCH_KEY) => {
@@ -90,9 +84,9 @@ export const useSearchState = (key: SEARCH_KEY) => {
   )
 
   const updateState = useCallback(
-    (params: SEARCH_ACTION) => {
+    (searchAction: SEARCH_ACTION) => {
       setSearchState((prev) =>
-        applySearchAction(prev, params, initialState, getInput),
+        dispatch(prev, searchAction, initialState, getInput),
       )
     },
     [setSearchState, initialState, getInput],

@@ -1,4 +1,4 @@
-import { useSearchState } from '@/hooks/popover-search/use-search'
+import { useSearchState } from '@/hooks/popover-search/hooks/use-search'
 import { Button, Spinner } from '@chakra-ui/react'
 import { FC, useEffect, useMemo } from 'react'
 import FilterBox from '../inputs/FilterBox'

@@ -1,4 +1,4 @@
-import { SearchInputDto } from '.'
+import { SearchInputDto } from '../types'
 import { searchStateJobApplication } from './jobApplication'
 
 // Solution to allow multiple localStorage saved search states to map to multiple inputs that are not saved in localStorage.

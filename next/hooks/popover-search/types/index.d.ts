@@ -1,5 +1,6 @@
 import { JSX } from 'react'
 
+// Basically just typing what identifies a table and a column. Maybe overly redundant
 export type TableIdentifier = Pick<SearchDto, 'table'>
 export type ColumnIdentifier = Pick<SearchColumnDto, 'name'>
 export type SearchIdentifier = TableIdentifier & ColumnIdentifier
@@ -10,6 +11,7 @@ export type SelectOption = {
   element?: JSX.Element
 }
 
+// SEARCH RELATED
 export type SearchInputDto = TableIdentifier & {
   inputs: SearchInput[]
 }
@@ -35,3 +37,22 @@ export type SearchInputDropdown = BaseSearchInput & {
     column: string
   }
 }
+
+// GET INPUT FN
+export type GetInputFn = (id: SearchIdentifier) => SearchInput
+
+// ACTIONS
+export type SET_VALUE = SearchIdentifier & {
+  action: 'SET_VALUE'
+  payload: SearchPayload
+}
+
+export type RESET_ALL = {
+  action: 'RESET_ALL'
+}
+
+export type RESET_SINGLE = SearchIdentifier & {
+  action: 'RESET_SINGLE'
+}
+
+export type SEARCH_ACTION = SET_VALUE | RESET_ALL | RESET_SINGLE
