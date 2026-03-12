@@ -77,7 +77,6 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
     isFetching,
     isError,
     data: jobApplicationsInfinite,
-    error,
     fetchNextPage,
     hasNextPage,
     isFetchedAfterMount,
