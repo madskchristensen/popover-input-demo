@@ -51,7 +51,6 @@ export const useSearchState = (key: SEARCH_KEY) => {
           payload: {
             value: '',
             exact: type === 'dropdown',
-            allowMultiple: type === 'checkbox',
           },
         } satisfies SearchColumnDto
       })
@@ -131,8 +130,6 @@ export const useSearchState = (key: SEARCH_KEY) => {
                     payload: {
                       value: '',
                       exact: getInput({ table, name }).type === 'dropdown',
-                      allowMultiple:
-                        getInput({ table, name }).type === 'checkbox',
                     },
                   } satisfies SearchColumnDto
                 }
@@ -147,7 +144,7 @@ export const useSearchState = (key: SEARCH_KEY) => {
       }
 
       if (action === 'SET_VALUE') {
-        const { value, exact, allowMultiple } = params.payload
+        const { value, exact } = params.payload
 
         setSearchState((prev) =>
           prev.map((prevSearch) => {
@@ -165,7 +162,6 @@ export const useSearchState = (key: SEARCH_KEY) => {
                         getInput({ table, name }).type === 'dropdown'
                           ? true
                           : exact,
-                      allowMultiple,
                     },
                   } satisfies SearchColumnDto
                 }

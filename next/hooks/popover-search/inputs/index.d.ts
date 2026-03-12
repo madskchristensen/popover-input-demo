@@ -35,15 +35,3 @@ export type SearchInputDropdown = BaseSearchInput & {
     column: string
   }
 }
-
-export type SearchInputCheckBoxDropdown = BaseSearchInput & {
-  type: 'checkbox'
-  // Avoiding any typing here likely requires a slight re-work of the Popover implementation.
-  // Any is somewhat valid - As long as SelectOption is returned the interface is valid.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  transformer: (source: any[]) => SelectOption[]
-  isDependantOn?: {
-    table: string
-    column: string
-  }
-}
