@@ -1,48 +1,57 @@
-import { SEARCH_KEY } from '@/hooks/popover-search/types/storage-maps'
-import { useSearchState } from '@/hooks/popover-search/hooks/use-search'
 import { FC, Fragment } from 'react'
 import PopoverDropdown from '../popover-search/PopoverDropdown'
 import PopoverTextInput from '../popover-search/PopoverTextInput'
+import {
+  GetInputFn,
+  SEARCH_ACTION,
+  SearchInputDropdown,
+} from '@/hooks/popover-search/types'
 import { SearchColumnDto, SearchDto } from '@/orval/generated/models'
 
 type FilterBoxProps = {
   columns: SearchColumnDto[]
   table: SearchDto['table']
   optionsSourceMap: Record<string, any[]>
-  searchKey: SEARCH_KEY
+  searchState: SearchDto[]
+  updateState: (searchAction: SEARCH_ACTION) => void
+  getInput: GetInputFn
+}
+
+const getDependantValue = (
+  searchState: SearchDto[],
+  isDependantOn: SearchInputDropdown['isDependantOn'],
+): string | undefined => {
+  if (!isDependantOn) return undefined
+
+  return searchState
+    .find((searchDto) => searchDto.table === isDependantOn.table)
+    ?.columns.find((columnDto) => columnDto.column === isDependantOn.column)
+    ?.payload.value
 }
 
 const FilterBox: FC<FilterBoxProps> = ({
   table,
   columns,
   optionsSourceMap,
-  searchKey,
+  searchState,
+  updateState,
+  getInput,
 }) => {
-  const { searchState, updateState, getInput } = useSearchState(searchKey)
-
   return (
-    <Fragment key={table}>
+    <>
       {columns.map(({ column, payload }) => {
         const searchInput = getInput({ table, column })
 
-        let dependantValue
-
-        if (searchInput.type === 'dropdown' && searchInput.isDependantOn) {
-          const foundTable = searchState.find(
-            (s) => s.table === searchInput.isDependantOn?.table,
-          )
-
-          const foundColumn = foundTable?.columns.find(
-            (c) => c.column === searchInput.isDependantOn?.column,
-          )
-
-          dependantValue = foundColumn?.payload.value
-        }
+        const dependantValue =
+          searchInput.type === 'dropdown'
+            ? getDependantValue(searchState, searchInput.isDependantOn)
+            : undefined
 
         return (
           <Fragment key={column}>
             {searchInput.type === 'dropdown' && (
               <PopoverDropdown
+                key={column}
                 column={column}
                 value={payload.value}
                 label={searchInput.label}
@@ -56,6 +65,7 @@ const FilterBox: FC<FilterBoxProps> = ({
             )}
             {searchInput.type === 'text' && (
               <PopoverTextInput
+                key={column}
                 exact={payload.exact}
                 table={table}
                 column={column}
@@ -67,7 +77,7 @@ const FilterBox: FC<FilterBoxProps> = ({
           </Fragment>
         )
       })}
-    </Fragment>
+    </>
   )
 }
 

@@ -44,7 +44,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
   }, [page])
   */
 
-  const { searchState, updateState, hasValues, filterEmpty } =
+  const { searchState, updateState, getInput, hasValues, filterEmpty } =
     useSearchState('jobApplication')
 
   const { data: jobCategories } = useJobCategoryControllerFindAll()
@@ -124,6 +124,7 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
       <div className='py-2 bg-white border border-gray rounded'>
         <div className='px-4 pb-6 pt-4 border-b-[1px] mb-6 flex justify-between'>
           <div className='flex flex-wrap gap-x-2 gap-y-4 items-center'>
+            {/* Each iteration handles inputs for 1 table */}
             {searchState.map(({ table, columns }) => {
               return (
                 <FilterBox
@@ -131,7 +132,9 @@ export const JobApplicationTable: FC<JobApplicationTableProps> = ({}) => {
                   table={table}
                   columns={columns}
                   optionsSourceMap={optionsSourceMap}
-                  searchKey='jobApplication'
+                  searchState={searchState}
+                  updateState={updateState}
+                  getInput={getInput}
                 />
               )
             })}
